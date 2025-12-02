@@ -389,3 +389,11 @@ export function getAvailabilityLabel(house: House): string {
       return 'Currently Full';
   }
 }
+
+export function getHouseById(id: string): House | undefined {
+  return houses.find((h) => h.id === id);
+}
+
+export function getAllHouseIds(): string[] {
+  return houses.map((h) => h.id);
+}
