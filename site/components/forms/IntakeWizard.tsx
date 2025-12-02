@@ -159,7 +159,7 @@ export default function IntakeWizard() {
               </li>
               <li className="flex items-start gap-2">
                 <span className="text-brand-success mt-1">✓</span>
-                <span>Meet our community and see if it's the right fit</span>
+                <span>Meet our community and see if it&apos;s the right fit</span>
               </li>
             </ul>
           </div>
@@ -211,7 +211,7 @@ export default function IntakeWizard() {
         <form onSubmit={form1.handleSubmit(handleStep1Submit)} className="space-y-6">
           <div className="bg-gradient-to-br from-primary-50 to-white rounded-2xl p-8 border border-primary-200 shadow-lg">
             <h2 className="font-heading text-2xl font-bold text-primary-900 mb-2">Welcome to Recovery Centered Living</h2>
-            <p className="text-brand-text mb-8">Let's start with some basic information so we can support you best.</p>
+            <p className="text-brand-text mb-8">Let&apos;s start with some basic information so we can support you best.</p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
@@ -591,8 +591,8 @@ export default function IntakeWizard() {
       {currentStep === 3 && (
         <form onSubmit={form3.handleSubmit(handleStep3Submit)} className="space-y-6">
           <div className="bg-gradient-to-br from-brand-accent/10 to-white rounded-2xl p-8 border border-primary-200 shadow-lg">
-            <h2 className="font-heading text-2xl font-bold text-primary-900 mb-2">Almost There! Let's Schedule Your Interview</h2>
-            <p className="text-brand-text mb-8">We'll meet with you to answer questions and see if we're the right fit for each other.</p>
+            <h2 className="font-heading text-2xl font-bold text-primary-900 mb-2">Almost There! Let&apos;s Schedule Your Interview</h2>
+            <p className="text-brand-text mb-8">We&apos;ll meet with you to answer questions and see if we&apos;re the right fit for each other.</p>
 
             <div className="space-y-6">
               <div>
@@ -688,11 +688,11 @@ export default function IntakeWizard() {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-brand-success mt-0.5">✓</span>
-                  <span>The interview is casual - we're just getting to know each other</span>
+                  <span>The interview is casual - we&apos;re just getting to know each other</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-brand-success mt-0.5">✓</span>
-                  <span>If in-person, you'll see the house and meet some of the community</span>
+                  <span>If in-person, you&apos;ll see the house and meet some of the community</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="text-brand-success mt-0.5">✓</span>

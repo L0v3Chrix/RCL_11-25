@@ -6,20 +6,20 @@ export const step1Schema = z.object({
   lastName: z.string().min(1, 'Last name is required'),
   email: z.string().email('Please enter a valid email'),
   phone: z.string().regex(/^\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}$/, 'Please enter a valid phone number'),
-  houseType: z.enum(['men', 'women', 'unsure'], { required_error: 'Please select an option' }),
-  urgency: z.enum(['immediate', 'this-week', 'this-month', 'exploring'], { required_error: 'Please select urgency' }),
+  houseType: z.enum(['men', 'women', 'unsure'] as const, { message: 'Please select an option' }),
+  urgency: z.enum(['immediate', 'this-week', 'this-month', 'exploring'] as const, { message: 'Please select urgency' }),
   referralSource: z.string().min(1, 'Please tell us how you heard about us'),
 });
 
 // Step 2: Full Application
 export const step2Schema = z.object({
   sobrietyDate: z.string().min(1, 'Please provide your sobriety date'),
-  previousTreatment: z.enum(['yes', 'no']),
+  previousTreatment: z.enum(['yes', 'no'] as const),
   previousTreatmentDetails: z.string().optional(),
-  recoveryProgram: z.enum(['12-step', 'smart', 'mat', 'dharma', 'holistic', 'none', 'other']),
-  employmentStatus: z.enum(['employed', 'unemployed', 'student', 'disabled', 'other']),
-  incomeRange: z.enum(['0-500', '500-1000', '1000-2000', '2000-plus', 'prefer-not-to-say']),
-  hasInsurance: z.enum(['yes', 'no', 'not-sure']),
+  recoveryProgram: z.enum(['12-step', 'smart', 'mat', 'dharma', 'holistic', 'none', 'other'] as const),
+  employmentStatus: z.enum(['employed', 'unemployed', 'student', 'disabled', 'other'] as const),
+  incomeRange: z.enum(['0-500', '500-1000', '1000-2000', '2000-plus', 'prefer-not-to-say'] as const),
+  hasInsurance: z.enum(['yes', 'no', 'not-sure'] as const),
   medicalNeeds: z.string().max(500, 'Please keep this under 500 characters').optional(),
   medications: z.string().max(500, 'Please keep this under 500 characters').optional(),
   legalStatus: z.string().max(500, 'Please keep this under 500 characters').optional(),
@@ -30,8 +30,8 @@ export const step2Schema = z.object({
 // Step 3: Interview Scheduling
 export const step3Schema = z.object({
   preferredDate: z.string().min(1, 'Please select a preferred date'),
-  preferredTime: z.enum(['morning', 'afternoon', 'evening']),
-  visitType: z.enum(['in-person', 'video']),
+  preferredTime: z.enum(['morning', 'afternoon', 'evening'] as const),
+  visitType: z.enum(['in-person', 'video'] as const),
   additionalNotes: z.string().max(1000).optional(),
 });
 

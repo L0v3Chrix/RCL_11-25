@@ -39,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${crimsonPro.variable} ${inter.variable} ${caveat.variable} font-body antialiased text-brand-text bg-brand-light selection:bg-brand-accent/30 selection:text-brand-primary`}
+        className={`${crimsonPro.variable} ${inter.variable} ${caveat.variable} font-body antialiased text-slate-800 bg-white selection:bg-indigo-100 selection:text-indigo-900`}
       >
         <Header />
         <main className="min-h-screen">

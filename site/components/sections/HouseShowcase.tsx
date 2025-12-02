@@ -8,6 +8,9 @@ import Link from 'next/link';
 import { houses, getAvailabilityBadgeColor, getAvailabilityLabel, getTotalAvailableBeds } from '@/lib/data/houses';
 import type { House } from '@/lib/data/houses';
 
+// External application URL
+const APPLICATION_URL = 'https://oathtrack-resident-applications.s3.amazonaws.com/application.html#637ee9b1c89c';
+
 type HouseFilter = 'all' | 'mens' | 'womens' | 'available';
 
 export default function HouseShowcase() {
@@ -24,23 +27,23 @@ export default function HouseShowcase() {
   const totalAvailableBeds = getTotalAvailableBeds();
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white via-primary-50/30 to-white">
+    <section className="py-20 bg-gradient-to-b from-white via-indigo-50/30 to-white">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <h2 className="font-heading text-4xl md:text-5xl font-bold text-primary-900 mb-4">
+          <h2 className="font-heading text-4xl md:text-5xl font-bold text-slate-800 mb-4">
             Find Your Home in Austin
           </h2>
-          <p className="text-lg text-brand-text leading-relaxed mb-4">
+          <p className="text-lg text-slate-600 leading-relaxed mb-4">
             6 peer-led sober living homes across Austin. Each house offers a unique environment designed for comfort, community, and lasting recovery.
           </p>
 
           {/* Real-time Availability Summary */}
           {totalAvailableBeds > 0 && (
-            <div className="inline-flex items-center gap-2 bg-brand-success/10 border-2 border-brand-success/30 rounded-full px-5 py-2 text-brand-success font-medium">
+            <div className="inline-flex items-center gap-2 bg-green-100 border-2 border-green-300 rounded-full px-5 py-2 text-green-700 font-medium">
               <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-success opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-brand-success"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
               </span>
               <span className="text-sm font-bold">
                 {totalAvailableBeds} Bed{totalAvailableBeds === 1 ? '' : 's'} Available Now
@@ -62,14 +65,14 @@ export default function HouseShowcase() {
               onClick={() => setFilter(tab.value as HouseFilter)}
               className={`px-6 py-3 rounded-lg font-medium transition-all transform hover:scale-105 active:scale-95 flex items-center gap-2 ${
                 filter === tab.value
-                  ? 'bg-gradient-to-r from-primary-600 to-secondary-600 text-white shadow-lg'
-                  : 'bg-white text-brand-text border-2 border-primary-200 hover:border-primary-400'
+                  ? 'bg-indigo-600 text-white shadow-lg'
+                  : 'bg-white text-slate-700 border-2 border-slate-200 hover:border-indigo-400'
               }`}
             >
               <span className="text-lg">{tab.icon}</span>
               <span>{tab.label}</span>
               <span className={`text-xs px-2 py-0.5 rounded-full ${
-                filter === tab.value ? 'bg-white/20' : 'bg-primary-100 text-primary-700'
+                filter === tab.value ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600'
               }`}>
                 {tab.count}
               </span>
@@ -88,11 +91,11 @@ export default function HouseShowcase() {
         {filteredHouses.length === 0 && (
           <div className="text-center py-16">
             <div className="text-6xl mb-4">🔍</div>
-            <h3 className="font-heading text-2xl font-bold text-primary-900 mb-2">No houses match your filter</h3>
-            <p className="text-brand-text mb-6">Try selecting a different option above</p>
+            <h3 className="font-heading text-2xl font-bold text-slate-800 mb-2">No houses match your filter</h3>
+            <p className="text-slate-600 mb-6">Try selecting a different option above</p>
             <button
               onClick={() => setFilter('all')}
-              className="px-6 py-3 bg-primary-600 text-white rounded-lg font-medium hover:bg-primary-700 transition-colors"
+              className="px-6 py-3 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors"
             >
               View All Houses
             </button>
@@ -100,23 +103,27 @@ export default function HouseShowcase() {
         )}
 
         {/* Bottom CTA */}
-        <div className="text-center bg-gradient-to-br from-primary-50 to-secondary-50 rounded-2xl p-8 md:p-12 border-2 border-primary-200 shadow-lg">
-          <h3 className="font-heading text-2xl md:text-3xl font-bold text-primary-900 mb-3">
+        <div className="text-center bg-gradient-to-br from-indigo-50 to-teal-50 rounded-2xl p-8 md:p-12 border-2 border-indigo-200 shadow-lg">
+          <h3 className="font-heading text-2xl md:text-3xl font-bold text-slate-800 mb-3">
             Not sure which home is right for you?
           </h3>
-          <p className="text-brand-text mb-6 max-w-2xl mx-auto">
+          <p className="text-slate-600 mb-6 max-w-2xl mx-auto">
             Slade and Chloe will personally help you find the perfect fit based on your needs, location preference, and recovery goals.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="/intake">
-              <Button variant="primary" size="lg" className="shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all">
-                Start Your Application →
-              </Button>
-            </Link>
-            <Link href="/contact">
-              <Button variant="outline" size="lg" className="hover:bg-white transition-all">
-                Schedule a Tour
-              </Button>
+            <a
+              href={APPLICATION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center bg-indigo-600 hover:bg-indigo-700 text-white px-8 py-4 rounded-lg font-bold shadow-lg hover:shadow-xl transition-all"
+            >
+              Start Your Application →
+            </a>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center bg-white hover:bg-slate-50 text-slate-700 border-2 border-slate-300 px-8 py-4 rounded-lg font-bold transition-all"
+            >
+              Schedule a Tour
             </Link>
           </div>
         </div>
@@ -144,17 +151,17 @@ function HouseCard({ house }: { house: House }) {
             onError={() => setImageError(true)}
           />
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-primary-100 via-secondary-100 to-primary-100 flex items-center justify-center">
+          <div className="w-full h-full bg-gradient-to-br from-indigo-100 via-teal-100 to-indigo-100 flex items-center justify-center">
             <div className="text-center">
               <div className="text-6xl mb-3">{house.type === 'mens' ? '🏠' : '🏡'}</div>
-              <p className="font-heading font-bold text-primary-700 text-xl">{house.name}</p>
+              <p className="font-heading font-bold text-indigo-700 text-xl">{house.name}</p>
             </div>
           </div>
         )}
 
         {/* Type Badge (Men's/Women's) */}
         <div className="absolute top-4 left-4 z-10">
-          <span className="bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full text-sm font-bold text-primary-900 shadow-lg flex items-center gap-2">
+          <span className="bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-full text-sm font-bold text-slate-800 shadow-lg flex items-center gap-2">
             <span>{house.type === 'mens' ? '👔' : '👗'}</span>
             {house.type === 'mens' ? "Men's House" : "Women's House"}
           </span>
@@ -175,7 +182,7 @@ function HouseCard({ house }: { house: House }) {
 
         {/* Location Tag */}
         <div className="absolute bottom-4 left-4 right-4 z-10">
-          <div className="bg-black/60 backdrop-blur-sm rounded-lg px-3 py-2 flex items-center gap-2 text-white">
+          <div className="bg-slate-900/70 backdrop-blur-sm rounded-lg px-3 py-2 flex items-center gap-2 text-white">
             <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
             </svg>
@@ -186,14 +193,14 @@ function HouseCard({ house }: { house: House }) {
 
       {/* House Info */}
       <div className="p-6 flex-grow flex flex-col">
-        <h3 className="font-heading text-2xl font-bold text-primary-900 mb-3 group-hover:text-primary-700 transition-colors">
+        <h3 className="font-heading text-2xl font-bold text-slate-800 mb-3 group-hover:text-indigo-600 transition-colors">
           {house.name}
         </h3>
 
         {/* Features Grid */}
         <div className="grid grid-cols-2 gap-2 mb-4">
           {house.features.map((feature, index) => (
-            <div key={index} className="flex items-center gap-2 text-sm text-brand-text">
+            <div key={index} className="flex items-center gap-2 text-sm text-slate-600">
               <span className="text-lg">{feature.icon}</span>
               <span>{feature.label}</span>
             </div>
@@ -202,11 +209,11 @@ function HouseCard({ house }: { house: House }) {
 
         {/* Highlights */}
         <div className="mb-4">
-          <p className="text-sm font-medium text-primary-700 mb-2">Highlights:</p>
+          <p className="text-sm font-medium text-indigo-700 mb-2">Highlights:</p>
           <ul className="space-y-1">
             {house.highlights.slice(0, 3).map((highlight, index) => (
-              <li key={index} className="text-sm text-brand-text flex items-start gap-2">
-                <span className="text-brand-success mt-0.5">✓</span>
+              <li key={index} className="text-sm text-slate-600 flex items-start gap-2">
+                <span className="text-green-600 mt-0.5">✓</span>
                 <span>{highlight}</span>
               </li>
             ))}
@@ -214,22 +221,22 @@ function HouseCard({ house }: { house: House }) {
         </div>
 
         {/* House Manager */}
-        <div className="bg-primary-50/50 rounded-lg p-3 mb-4">
-          <p className="text-xs font-bold text-primary-700 mb-1">House Manager</p>
-          <p className="text-sm font-bold text-primary-900">{house.houseManager.name}</p>
-          <p className="text-xs text-primary-600">{house.houseManager.yearsInRecovery} years in recovery</p>
+        <div className="bg-indigo-50 rounded-lg p-3 mb-4">
+          <p className="text-xs font-bold text-indigo-700 mb-1">House Manager</p>
+          <p className="text-sm font-bold text-slate-800">{house.houseManager.name}</p>
+          <p className="text-xs text-slate-600">{house.houseManager.yearsInRecovery} years in recovery</p>
         </div>
 
         {/* Pricing */}
         <div className="mt-auto">
-          <div className="flex justify-between items-center mb-4 pb-4 border-b border-primary-100">
+          <div className="flex justify-between items-center mb-4 pb-4 border-b border-slate-200">
             <div>
-              <p className="text-xs text-primary-600">Starting at</p>
-              <p className="text-2xl font-bold text-primary-900">${house.pricing.weekly}<span className="text-sm font-normal text-brand-text">/week</span></p>
+              <p className="text-xs text-slate-500">Starting at</p>
+              <p className="text-2xl font-bold text-slate-800">${house.pricing.weekly}<span className="text-sm font-normal text-slate-500">/week</span></p>
             </div>
             <div className="text-right">
-              <p className="text-sm text-brand-text">${house.pricing.monthly}/month</p>
-              <p className="text-xs text-primary-600">${house.pricing.deposit} deposit</p>
+              <p className="text-sm text-slate-600">${house.pricing.monthly}/month</p>
+              <p className="text-xs text-slate-500">${house.pricing.deposit} deposit</p>
             </div>
           </div>
 
@@ -240,11 +247,14 @@ function HouseCard({ house }: { house: House }) {
                 View Details
               </Button>
             </Link>
-            <Link href="/intake">
-              <Button variant="outline" className="px-4 text-sm">
-                Apply
-              </Button>
-            </Link>
+            <a
+              href={APPLICATION_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-4 py-2 bg-white border-2 border-indigo-300 text-indigo-600 rounded-lg font-medium hover:bg-indigo-50 transition-colors text-sm"
+            >
+              Apply
+            </a>
           </div>
         </div>
       </div>

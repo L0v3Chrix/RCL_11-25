@@ -54,7 +54,16 @@ export async function POST(request: NextRequest) {
     const model = genAI.getGenerativeModel({ model: 'gemini-pro' });
 
     // Build conversation history for context
-    const chatHistory = (history || []).map((msg: { role: string; text: string }) => ({
+    // Filter out the initial greeting if it's the only model message and no user messages yet
+    const filteredHistory = (history || []).filter((msg: { role: string; text: string }, index: number) => {
+      // Skip the first message if it's from model (initial greeting)
+      if (index === 0 && msg.role === 'model') {
+        return false;
+      }
+      return true;
+    });
+
+    const chatHistory = filteredHistory.map((msg: { role: string; text: string }) => ({
       role: msg.role === 'user' ? 'user' : 'model',
       parts: [{ text: msg.text }],
     }));

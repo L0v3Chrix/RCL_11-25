@@ -104,11 +104,11 @@ export default function RecoverySpectrum() {
           </h2>
 
           <p className="text-xl text-brand-text leading-relaxed mb-4">
-            Our rainbow logo isn't just colorful—it's meaningful. Each color represents a different recovery pathway we honor and support.
+            Our rainbow logo isn&apos;t just colorful—it&apos;s meaningful. Each color represents a different recovery pathway we honor and support.
           </p>
 
           <p className="text-lg text-primary-700 font-medium">
-            At Recovery Centered Living, <span className="text-brand-accent font-bold">all paths are welcome</span>. Whether you're working the 12 Steps, practicing mindfulness, using medication-assisted treatment, or finding your own way—you belong here.
+            At Recovery Centered Living, <span className="text-brand-accent font-bold">all paths are welcome</span>. Whether you&apos;re working the 12 Steps, practicing mindfulness, using medication-assisted treatment, or finding your own way—you belong here.
           </p>
         </div>
 
@@ -118,7 +118,7 @@ export default function RecoverySpectrum() {
             <div className="h-full w-full bg-gradient-to-r from-red-500 via-orange-500 via-yellow-500 via-green-500 via-blue-500 to-purple-500"></div>
           </div>
           <p className="text-center text-sm text-primary-600 mt-3 italic">
-            "The spectrum of recovery is as diverse as the people who walk it."
+            &quot;The spectrum of recovery is as diverse as the people who walk it.&quot;
           </p>
         </div>
 
@@ -181,7 +181,7 @@ export default function RecoverySpectrum() {
                     {selected.tagline}
                   </p>
                   <p className="text-brand-text text-lg leading-relaxed mb-6 italic">
-                    "{selected.philosophy}"
+                    &quot;{selected.philosophy}&quot;
                   </p>
                 </div>
               </div>
@@ -215,7 +215,7 @@ export default function RecoverySpectrum() {
 
               <div className="mt-6 pt-6 border-t border-primary-200">
                 <p className="text-sm text-primary-600 text-center">
-                  <strong>Remember:</strong> You don't have to choose just one. Many residents blend approaches in their personal recovery practice.
+                  <strong>Remember:</strong> You don&apos;t have to choose just one. Many residents blend approaches in their personal recovery practice.
                 </p>
               </div>
             </Card>
@@ -233,7 +233,7 @@ export default function RecoverySpectrum() {
                 Act From Love, Not Fear
               </h3>
               <p className="text-xl text-brand-text leading-relaxed mb-4">
-                This is our core philosophy at Recovery Centered Living. We don't believe there's only one "right" way to recover.
+                This is our core philosophy at Recovery Centered Living. We don&apos;t believe there&apos;s only one &quot;right&quot; way to recover.
               </p>
             </div>
 
@@ -242,7 +242,7 @@ export default function RecoverySpectrum() {
                 <div className="text-3xl mb-2">🤝</div>
                 <h4 className="font-bold text-primary-900 mb-2">Mutual Respect</h4>
                 <p className="text-sm text-brand-text">
-                  We honor each person's path and create space for all approaches to coexist.
+                  We honor each person&apos;s path and create space for all approaches to coexist.
                 </p>
               </div>
 
@@ -258,16 +258,16 @@ export default function RecoverySpectrum() {
                 <div className="text-3xl mb-2">🏠</div>
                 <h4 className="font-bold text-primary-900 mb-2">Shared Home</h4>
                 <p className="text-sm text-brand-text">
-                  Despite different paths, we're all working toward the same goal: a sober life worth living.
+                  Despite different paths, we&apos;re all working toward the same goal: a sober life worth living.
                 </p>
               </div>
             </div>
 
             <div className="bg-white/60 rounded-lg p-6 max-w-2xl mx-auto">
               <p className="text-primary-900 leading-relaxed">
-                <span className="font-bold text-lg block mb-3 text-brand-accent">"The best path is the one that keeps you sober."</span>
-                Whether that's the 12 Steps, meditation, therapy, medication, faith, or a blend of everything—
-                <strong> we're here to support your unique journey</strong>. That's what the Recovery Spectrum means to us.
+                <span className="font-bold text-lg block mb-3 text-brand-accent">&quot;The best path is the one that keeps you sober.&quot;</span>
+                Whether that&apos;s the 12 Steps, meditation, therapy, medication, faith, or a blend of everything—
+                <strong> we&apos;re here to support your unique journey</strong>. That&apos;s what the Recovery Spectrum means to us.
               </p>
             </div>
           </Card>
