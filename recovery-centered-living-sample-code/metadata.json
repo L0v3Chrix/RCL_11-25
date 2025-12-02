@@ -1,0 +1,8 @@
+{
+  "name": "Recovery Centered Living",
+  "description": "A compassionate, peer-led sober living community in Austin, Texas. Offering a sanctuary for transformation and recovery.",
+  "requestFramePermissions": [
+    "microphone",
+    "geolocation"
+  ]
+}
