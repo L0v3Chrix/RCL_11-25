@@ -53,11 +53,38 @@ const NOTES = [
   { text: "Community = Strength", color: "#d1ecf1" },
 ];
 
+interface PhotoItem {
+  type: 'photo';
+  id: string;
+  data: { src: string; label: string };
+  style: {
+    top: string;
+    left: string;
+    rotation: number;
+    zIndex: number;
+    size: 'medium' | 'large';
+  };
+}
+
+interface NoteItem {
+  type: 'note';
+  id: string;
+  data: { text: string; color: string };
+  style: {
+    top: string;
+    left: string;
+    rotation: number;
+    zIndex: number;
+  };
+}
+
+type ChaoticItem = PhotoItem | NoteItem;
+
 /**
  * Generate a pseudo-random layout for the chaos
  */
-const generateChaoticLayout = (count: number, notesCount: number) => {
-  const items = [];
+const generateChaoticLayout = (count: number, notesCount: number): ChaoticItem[] => {
+  const items: ChaoticItem[] = [];
 
   // Create photo items
   for (let i = 0; i < count; i++) {
@@ -68,8 +95,8 @@ const generateChaoticLayout = (count: number, notesCount: number) => {
       id: `photo-${i}`,
       data: PHOTOS[i % PHOTOS.length],
       style: {
-        top: `${row * 20 + (Math.random() * 10)}%`,
-        left: `${col * 20 + (Math.random() * 10)}%`,
+        top: `${row * 15 + (Math.random() * 10)}%`,
+        left: `${col * 20 + (Math.random() * 5)}%`,
         rotation: (Math.random() * 15) - 7.5,
         zIndex: Math.floor(Math.random() * 50),
         size: Math.random() > 0.8 ? 'large' : 'medium'

@@ -28,7 +28,7 @@ export default function Partners() {
                         </p>
                     </div>
 
-                    <PaperSurface isWavy={false} rotation={-0.5} className="p-10 md:p-16 mb-20 bg-[#FDF6E9]" shadowSize="xl">
+                    <PaperSurface isWavy={false} rotation={-0.5} className="p-10 md:p-16 mb-20 bg-[#FDF6E9]" shadowSize="lg">
                         <h3 className="font-heading text-3xl font-black text-[#2F6F71] mb-12">How we can help:</h3>
                         <div className="grid md:grid-cols-2 gap-10">
                             {helpItems.map((item, index) => (
