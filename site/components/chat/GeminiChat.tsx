@@ -10,13 +10,8 @@ interface ChatMessage {
 
 export default function GeminiChat() {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<ChatMessage[]>([
-    {
-      role: 'model',
-      text: "Hi there! I'm here to help answer questions about Recovery Centered Living. Whether you're looking for information about our sober living homes, the application process, or just want to know more about what we offer - I'm here to help. How can I assist you today?",
-      timestamp: new Date(),
-    },
-  ]);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [hasMounted, setHasMounted] = useState(false);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -25,6 +20,17 @@ export default function GeminiChat() {
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  useEffect(() => {
+    setHasMounted(true);
+    setMessages([
+      {
+        role: 'model',
+        text: "Hi there! I'm here to help answer questions about Recovery Centered Living. Whether you're looking for information about our sober living homes, the application process, or just want to know more about what we offer - I'm here to help. How can I assist you today?",
+        timestamp: new Date(),
+      },
+    ]);
+  }, []);
 
   useEffect(scrollToBottom, [messages, isOpen]);
 
@@ -93,6 +99,8 @@ export default function GeminiChat() {
     }
   };
 
+  if (!hasMounted) return null;
+
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end font-body">
       {/* Chat Window */}
@@ -133,11 +141,10 @@ export default function GeminiChat() {
                 className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'} animate-in fade-in slide-in-from-bottom-2 duration-300`}
               >
                 <div
-                  className={`max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed shadow-md ${
-                    msg.role === 'user'
-                      ? 'bg-gradient-to-br from-primary-600 to-primary-700 text-white rounded-br-none'
-                      : 'bg-white text-brand-text border border-primary-100 rounded-bl-none'
-                  }`}
+                  className={`max-w-[85%] p-4 rounded-2xl text-sm leading-relaxed shadow-md ${msg.role === 'user'
+                    ? 'bg-gradient-to-br from-primary-600 to-primary-700 text-white rounded-br-none'
+                    : 'bg-white text-brand-text border border-primary-100 rounded-bl-none'
+                    }`}
                 >
                   <p className="whitespace-pre-wrap">{msg.text}</p>
                   <span className={`text-xs mt-2 block ${msg.role === 'user' ? 'text-primary-100' : 'text-stone-400'}`}>

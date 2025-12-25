@@ -80,7 +80,7 @@ const pathways: RecoveryPathway[] = [
     tagline: 'Wisdom in All Ways',
     description: 'Many people find strength by blending multiple approaches or creating their own path.',
     examples: ['Combination approach', 'Eclectic methods', 'Personal practices', 'What works for YOU'],
-    philosophy: 'Recovery is personal. We support whatever keeps you sober and whole.',
+    philosophy: 'Recovery is personal. We support whatever keeps you in recovery and whole.',
   },
 ];
 
@@ -128,17 +128,15 @@ export default function RecoverySpectrum() {
             <button
               key={pathway.id}
               onClick={() => setSelectedPathway(selectedPathway === pathway.id ? null : pathway.id)}
-              className={`text-left transition-all transform hover:scale-105 active:scale-95 ${
-                selectedPathway === pathway.id ? 'scale-105 shadow-2xl' : ''
-              }`}
+              className={`text-left transition-all transform hover:scale-105 active:scale-95 ${selectedPathway === pathway.id ? 'scale-105 shadow-2xl' : ''
+                }`}
             >
               <Card
                 hoverable
-                className={`h-full border-2 ${
-                  selectedPathway === pathway.id
-                    ? `border-[${pathway.color}] shadow-xl`
-                    : 'border-primary-200'
-                }`}
+                className={`h-full border-2 ${selectedPathway === pathway.id
+                  ? `border-[${pathway.color}] shadow-xl`
+                  : 'border-primary-200'
+                  }`}
               >
                 <div className={`bg-gradient-to-br ${pathway.gradient} text-white p-6 -mx-6 -mt-6 mb-4 rounded-t-lg`}>
                   <div className="flex items-start justify-between mb-3">
@@ -157,11 +155,10 @@ export default function RecoverySpectrum() {
                   {pathway.description}
                 </p>
 
-                <div className={`text-xs px-3 py-1 rounded-full inline-block font-bold ${
-                  selectedPathway === pathway.id
-                    ? `bg-gradient-to-r ${pathway.gradient} text-white`
-                    : 'bg-primary-100 text-primary-700'
-                }`}>
+                <div className={`text-xs px-3 py-1 rounded-full inline-block font-bold ${selectedPathway === pathway.id
+                  ? `bg-gradient-to-r ${pathway.gradient} text-white`
+                  : 'bg-primary-100 text-primary-700'
+                  }`}>
                   {selectedPathway === pathway.id ? 'Tap to collapse ↑' : 'Tap to learn more ↓'}
                 </div>
               </Card>
@@ -258,14 +255,14 @@ export default function RecoverySpectrum() {
                 <div className="text-3xl mb-2">🏠</div>
                 <h4 className="font-bold text-primary-900 mb-2">Shared Home</h4>
                 <p className="text-sm text-brand-text">
-                  Despite different paths, we&apos;re all working toward the same goal: a sober life worth living.
+                  Despite different paths, we&apos;re all working toward the same goal: a life in recovery worth living.
                 </p>
               </div>
             </div>
 
             <div className="bg-white/60 rounded-lg p-6 max-w-2xl mx-auto">
               <p className="text-primary-900 leading-relaxed">
-                <span className="font-bold text-lg block mb-3 text-brand-accent">&quot;The best path is the one that keeps you sober.&quot;</span>
+                <span className="font-bold text-lg block mb-3 text-brand-accent">&quot;The best path is the one that keeps you in recovery.&quot;</span>
                 Whether that&apos;s the 12 Steps, meditation, therapy, medication, faith, or a blend of everything—
                 <strong> we&apos;re here to support your unique journey</strong>. That&apos;s what the Recovery Spectrum means to us.
               </p>

@@ -1,12 +1,11 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import Logo from '@/components/brand/Logo';
-
-// External application URL
-const APPLICATION_URL = 'https://oathtrack-resident-applications.s3.amazonaws.com/application.html#637ee9b1c89c';
+import { siteConfig, getSmsLink } from '@/config/site';
+import { Menu, X } from 'lucide-react';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -21,91 +20,123 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on route change
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [pathname]);
 
-  const navClasses = `fixed w-full z-50 transition-all duration-300 ${
-    isScrolled ? 'bg-white/95 backdrop-blur-sm shadow-md py-3' : 'bg-transparent py-6'
-  }`;
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      const element = document.querySelector(href);
+      if (element) {
+        setMobileMenuOpen(false);
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
-  const linkClasses = `text-sm font-medium transition-colors ${
-    isScrolled ? 'text-slate-700 hover:text-indigo-600' : 'text-white hover:text-amber-300'
-  }`;
+  const navItems = [
+    { label: 'Home', href: '/' },
+    { label: 'Houses', href: '#houses' },
+    { label: 'How It Works', href: '#how-it-works' },
+    { label: 'FAQ', href: '#faq' },
+    { label: 'Contact', href: '#contact' },
+  ];
 
   return (
-    <header className={navClasses}>
-      <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
-        {/* Logo - Colorful RCL Rainbow Community Logo */}
-        <Link href="/" className="z-50 group transition-all duration-300">
-          <Logo
-            variant="full"
-            textColor={isScrolled ? 'dark' : 'light'}
-            className={`h-14 md:h-16 transition-all duration-300 ${
-              isScrolled ? '' : 'drop-shadow-lg'
-            }`}
-          />
-        </Link>
+    <header className="fixed w-full z-50 transition-all duration-300">
+      <div
+        className={`w-full transition-all duration-500 ${isScrolled
+          ? 'bg-white/95 backdrop-blur-md shadow-lg py-3'
+          : 'bg-transparent py-6'
+          }`}
+      >
+        <div className="container flex justify-between items-center">
+          {/* Logo (Left) */}
+          <Link href="/" className="z-50 flex-shrink-0" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+            <div className="relative w-48 md:w-64 h-12 md:h-16">
+              <Image
+                src="/images/rcl-logo.png"
+                alt={siteConfig.siteName}
+                fill
+                className="object-contain object-left"
+                priority
+              />
+            </div>
+          </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          {['About', 'Houses', 'Resources', 'Contact'].map((item) => (
-            <Link
-              key={item}
-              href={`/${item.toLowerCase()}`}
-              className={linkClasses}
-            >
-              {item}
-            </Link>
-          ))}
-          <a
-            href={APPLICATION_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all transform hover:-translate-y-0.5 shadow-lg hover:shadow-xl ${
-              isScrolled
-                ? 'bg-indigo-600 text-white hover:bg-indigo-700'
-                : 'bg-white text-indigo-700 hover:bg-amber-50'
-            }`}
-          >
-            Apply Now
-          </a>
-        </nav>
-
-        {/* Mobile Menu Button */}
-        <button
-          className={`md:hidden z-50 transition-colors ${isScrolled ? 'text-slate-700' : 'text-white'}`}
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8">
-            <path strokeLinecap="round" strokeLinejoin="round" d={mobileMenuOpen ? "M6 18L18 6M6 6l12 12" : "M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"} />
-          </svg>
-        </button>
-
-        {/* Mobile Nav Overlay */}
-        {mobileMenuOpen && (
-          <div className="fixed inset-0 bg-white flex flex-col items-center justify-center gap-8 z-40 animate-in fade-in duration-200">
-            {['Home', 'About', 'Houses', 'Resources', 'Contact'].map((item) => (
-              <Link
-                key={item}
-                href={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
-                className="text-3xl font-heading font-bold text-slate-800 hover:text-indigo-600 transition-colors"
+          {/* Nav (Center) */}
+          <nav className="hidden md:flex items-center gap-8 lg:gap-12">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={(e) => scrollToSection(e, item.href)}
+                className={`text-base font-black tracking-tight transition-colors cursor-pointer ${isScrolled ? 'text-[#1A1410] hover:text-[#C7773B]' : 'text-white hover:text-[#C7773B]'
+                  }`}
               >
-                {item}
-              </Link>
+                {item.label}
+              </a>
             ))}
+          </nav>
+
+          {/* Application Link (Right) */}
+          <div className="hidden md:block">
             <a
-              href={APPLICATION_URL}
+              href={siteConfig.APPLICATION_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-indigo-600 text-white px-10 py-4 rounded-full text-xl font-bold mt-4 shadow-xl hover:bg-indigo-700 transition-colors"
+              className="bg-[#C7773B] hover:bg-[#B66629] text-white font-black text-sm px-8 py-3 rounded-full transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
-              Apply Now
+              Submit Application
             </a>
           </div>
-        )}
+
+          {/* Mobile Menu Button */}
+          <button
+            className={`md:hidden z-50 p-2 ${isScrolled ? 'text-[#1A1410]' : 'text-white'}`}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+          >
+            {mobileMenuOpen ? (
+              <X size={32} strokeWidth={2.5} />
+            ) : (
+              <Menu size={32} strokeWidth={2.5} />
+            )}
+          </button>
+
+          {/* Mobile Nav Overlay */}
+          {mobileMenuOpen && (
+            <div className="fixed inset-0 bg-[#FDF6E9] flex flex-col items-center justify-center gap-12 z-40">
+              {navItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => scrollToSection(e, item.href)}
+                  className="text-4xl font-heading font-black text-[#1A1410] hover:text-[#C7773B] transition-colors"
+                >
+                  {item.label}
+                </a>
+              ))}
+              <div className="flex flex-col items-center gap-6 mt-8">
+                <a
+                  href={siteConfig.APPLICATION_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-[#C7773B] text-white font-black text-2xl px-12 py-5 rounded-full shadow-xl"
+                >
+                  Submit Application
+                </a>
+                <a
+                  href={getSmsLink()}
+                  className="text-xl font-bold text-[#2F6F71]"
+                >
+                  Schedule a Tour
+                </a>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </header>
   );

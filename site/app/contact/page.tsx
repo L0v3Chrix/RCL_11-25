@@ -4,11 +4,8 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import Card from '@/components/ui/Card';
 import Link from 'next/link';
-
-// External application URL
-const APPLICATION_URL = 'https://oathtrack-resident-applications.s3.amazonaws.com/application.html#637ee9b1c89c';
+import { siteConfig, getSmsLink, getTelLink, getMailtoLink } from '@/config/site';
 
 // Contact form validation schema
 const contactSchema = z.object({
@@ -52,7 +49,6 @@ export default function ContactPage() {
     setSubmitStatus('idle');
 
     try {
-      // Send to email API
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -72,52 +68,51 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[#FDF6E9]">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-slate-800 via-indigo-900 to-slate-900 text-white py-20 pt-32">
-        <div className="container mx-auto px-4">
+      <section className="bg-gradient-to-br from-[#2D8A6E] to-[#247058] text-white py-20 pt-32">
+        <div className="container">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="font-heading text-5xl md:text-6xl font-bold mb-6">
+            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
               Get in Touch
             </h1>
-            <p className="text-xl md:text-2xl text-slate-200 mb-8 leading-relaxed">
+            <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
               We&apos;re here to answer your questions and support you on your recovery journey.
             </p>
-            <div className="flex justify-center gap-4">
-              <span className="text-5xl">💬</span>
-              <span className="text-5xl">🤝</span>
-              <span className="text-5xl">💛</span>
-            </div>
           </div>
         </div>
       </section>
 
       {/* Contact Options & Form */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4">
+      <section className="section">
+        <div className="container">
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
               {/* Direct Contact Options */}
               <div className="lg:col-span-1 space-y-6">
-                <Card>
-                  <h3 className="font-heading text-2xl font-bold text-slate-800 mb-4">
+                <div className="card p-6">
+                  <h3 className="font-heading text-2xl font-bold text-[#2C2C2C] mb-4">
                     Contact Information
                   </h3>
 
-                  <div className="space-y-4">
+                  <div className="space-y-6">
                     {/* Phone */}
                     <div>
                       <div className="flex items-center gap-3 mb-2">
-                        <span className="text-2xl">📞</span>
-                        <h4 className="font-bold text-slate-800">Call or Text</h4>
+                        <div className="w-10 h-10 rounded-full bg-[#E8F5F1] flex items-center justify-center text-[#2D8A6E]">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
+                          </svg>
+                        </div>
+                        <h4 className="font-bold text-[#2C2C2C]">Call or Text</h4>
                       </div>
                       <a
-                        href="tel:+15125551234"
-                        className="text-indigo-600 hover:text-indigo-700 font-medium text-lg block ml-11"
+                        href={getTelLink()}
+                        className="text-[#2D8A6E] hover:text-[#247058] font-medium text-lg block ml-13"
                       >
-                        (512) 555-1234
+                        {siteConfig.GOOGLE_VOICE_DISPLAY}
                       </a>
-                      <p className="text-sm text-slate-600 ml-11 mt-1">
+                      <p className="text-sm text-[#6B6B6B] ml-13 mt-1">
                         Available 9am - 8pm Daily
                       </p>
                     </div>
@@ -125,112 +120,112 @@ export default function ContactPage() {
                     {/* Email */}
                     <div>
                       <div className="flex items-center gap-3 mb-2">
-                        <span className="text-2xl">✉️</span>
-                        <h4 className="font-bold text-slate-800">Email</h4>
+                        <div className="w-10 h-10 rounded-full bg-[#FEF3EE] flex items-center justify-center text-[#E67B4A]">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                          </svg>
+                        </div>
+                        <h4 className="font-bold text-[#2C2C2C]">Email</h4>
                       </div>
                       <a
-                        href="mailto:info@recoverycenteredliving.com"
-                        className="text-indigo-600 hover:text-indigo-700 font-medium block ml-11 break-words"
+                        href={getMailtoLink()}
+                        className="text-[#2D8A6E] hover:text-[#247058] font-medium block ml-13 break-words"
                       >
-                        info@recoverycenteredliving.com
+                        {siteConfig.CONTACT_EMAIL}
                       </a>
-                      <p className="text-sm text-slate-600 ml-11 mt-1">
+                      <p className="text-sm text-[#6B6B6B] ml-13 mt-1">
                         Response within 24 hours
                       </p>
                     </div>
 
-                    {/* Location */}
+                    {/* Schedule Tour */}
                     <div>
                       <div className="flex items-center gap-3 mb-2">
-                        <span className="text-2xl">📍</span>
-                        <h4 className="font-bold text-slate-800">Location</h4>
+                        <div className="w-10 h-10 rounded-full bg-[#E8F5F1] flex items-center justify-center text-[#2D8A6E]">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                          </svg>
+                        </div>
+                        <h4 className="font-bold text-[#2C2C2C]">Schedule a Tour</h4>
                       </div>
-                      <p className="text-slate-600 ml-11">
-                        Austin, Texas<br />
-                        <span className="text-sm">
-                          (Men&apos;s houses: South Austin)<br />
-                          (Women&apos;s houses: North Austin)
-                        </span>
-                      </p>
+                      <a
+                        href={getSmsLink()}
+                        className="btn btn-secondary w-full mt-2"
+                      >
+                        Text Us to Schedule
+                      </a>
                     </div>
                   </div>
-                </Card>
+                </div>
 
                 {/* Crisis Support */}
-                <Card className="bg-gradient-to-br from-teal-50 to-indigo-50 border-2 border-teal-300">
+                <div className="card p-6 bg-[#FEF3EE] border-2 border-[#E67B4A]/30">
                   <div className="text-center">
-                    <div className="text-4xl mb-3">🆘</div>
-                    <h3 className="font-bold text-slate-800 mb-2">
+                    <h3 className="font-bold text-[#2C2C2C] mb-2">
                       In Crisis?
                     </h3>
-                    <p className="text-sm text-slate-600 mb-4">
+                    <p className="text-sm text-[#6B6B6B] mb-4">
                       If you&apos;re experiencing a crisis, help is available right now.
                     </p>
                     <a
                       href="tel:988"
-                      className="block w-full bg-teal-600 text-white py-3 rounded-lg font-bold text-lg hover:bg-teal-700 transition-colors mb-2"
+                      className="block w-full bg-[#E67B4A] text-white py-3 rounded-lg font-bold text-lg hover:bg-[#D4612E] transition-colors mb-2"
                     >
                       Call 988
                     </a>
-                    <p className="text-xs text-teal-700">
+                    <p className="text-xs text-[#E67B4A]">
                       988 Suicide & Crisis Lifeline<br />
-                      Available 24/7 • Free & Confidential
+                      Available 24/7 - Free & Confidential
                     </p>
                   </div>
-                </Card>
+                </div>
 
                 {/* Quick Links */}
-                <Card>
-                  <h3 className="font-bold text-slate-800 mb-3">
+                <div className="card p-6">
+                  <h3 className="font-bold text-[#2C2C2C] mb-3">
                     Quick Links
                   </h3>
                   <div className="space-y-2">
                     <a
-                      href={APPLICATION_URL}
+                      href={siteConfig.APPLICATION_URL}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="block text-indigo-600 hover:text-indigo-700 font-medium"
+                      className="block text-[#2D8A6E] hover:text-[#247058] font-medium"
                     >
                       → Start Your Application
                     </a>
                     <Link
                       href="/houses"
-                      className="block text-indigo-600 hover:text-indigo-700 font-medium"
+                      className="block text-[#2D8A6E] hover:text-[#247058] font-medium"
                     >
                       → View Our Houses
                     </Link>
                     <Link
-                      href="/about"
-                      className="block text-indigo-600 hover:text-indigo-700 font-medium"
+                      href="/faq"
+                      className="block text-[#2D8A6E] hover:text-[#247058] font-medium"
                     >
-                      → Meet Slade & Chloe
-                    </Link>
-                    <Link
-                      href="/resources"
-                      className="block text-indigo-600 hover:text-indigo-700 font-medium"
-                    >
-                      → Recovery Resources
+                      → Frequently Asked Questions
                     </Link>
                   </div>
-                </Card>
+                </div>
               </div>
 
               {/* Contact Form */}
               <div className="lg:col-span-2">
-                <Card>
-                  <h2 className="font-heading text-3xl font-bold text-slate-800 mb-6">
+                <div className="card p-6 md:p-8">
+                  <h2 className="font-heading text-3xl font-bold text-[#2C2C2C] mb-6">
                     Send Us a Message
                   </h2>
 
                   {submitStatus === 'success' && (
-                    <div className="mb-6 p-4 bg-green-50 border-2 border-green-300 rounded-lg">
+                    <div className="mb-6 p-4 bg-[#E8F5F1] border-2 border-[#2D8A6E]/30 rounded-lg">
                       <div className="flex items-start gap-3">
-                        <span className="text-2xl">✅</span>
+                        <span className="text-[#2D8A6E] text-2xl">✓</span>
                         <div>
-                          <h3 className="font-bold text-green-800 mb-1">
+                          <h3 className="font-bold text-[#2D8A6E] mb-1">
                             Message Sent Successfully!
                           </h3>
-                          <p className="text-sm text-green-700">
+                          <p className="text-sm text-[#6B6B6B]">
                             Thank you for reaching out. We&apos;ll get back to you within 24 hours.
                           </p>
                         </div>
@@ -241,13 +236,13 @@ export default function ContactPage() {
                   {submitStatus === 'error' && (
                     <div className="mb-6 p-4 bg-red-50 border-2 border-red-300 rounded-lg">
                       <div className="flex items-start gap-3">
-                        <span className="text-2xl">⚠️</span>
+                        <span className="text-red-600 text-2xl">!</span>
                         <div>
                           <h3 className="font-bold text-red-800 mb-1">
                             Oops! Something went wrong.
                           </h3>
                           <p className="text-sm text-red-700">
-                            Please try calling us at (512) 555-1234 or email info@recoverycenteredliving.com
+                            Please try calling us at {siteConfig.GOOGLE_VOICE_DISPLAY} or email {siteConfig.CONTACT_EMAIL}
                           </p>
                         </div>
                       </div>
@@ -257,14 +252,14 @@ export default function ContactPage() {
                   <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                     {/* Name */}
                     <div>
-                      <label htmlFor="name" className="block font-medium text-slate-700 mb-2">
-                        Your Name <span className="text-red-500">*</span>
+                      <label htmlFor="name" className="block font-medium text-[#2C2C2C] mb-2">
+                        Your Name <span className="text-[#E67B4A]">*</span>
                       </label>
                       <input
                         {...register('name')}
                         type="text"
                         id="name"
-                        className="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-indigo-500 focus:outline-none transition-colors text-slate-800"
+                        className="w-full px-4 py-3 border-2 border-stone-200 rounded-lg focus:border-[#2D8A6E] focus:outline-none transition-colors text-[#2C2C2C] bg-white"
                         placeholder="John Doe"
                       />
                       {errors.name && (
@@ -275,14 +270,14 @@ export default function ContactPage() {
                     {/* Email & Phone */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label htmlFor="email" className="block font-medium text-slate-700 mb-2">
-                          Email Address <span className="text-red-500">*</span>
+                        <label htmlFor="email" className="block font-medium text-[#2C2C2C] mb-2">
+                          Email Address <span className="text-[#E67B4A]">*</span>
                         </label>
                         <input
                           {...register('email')}
                           type="email"
                           id="email"
-                          className="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-indigo-500 focus:outline-none transition-colors text-slate-800"
+                          className="w-full px-4 py-3 border-2 border-stone-200 rounded-lg focus:border-[#2D8A6E] focus:outline-none transition-colors text-[#2C2C2C] bg-white"
                           placeholder="john@example.com"
                         />
                         {errors.email && (
@@ -291,14 +286,14 @@ export default function ContactPage() {
                       </div>
 
                       <div>
-                        <label htmlFor="phone" className="block font-medium text-slate-700 mb-2">
-                          Phone Number <span className="text-slate-400">(Optional)</span>
+                        <label htmlFor="phone" className="block font-medium text-[#2C2C2C] mb-2">
+                          Phone Number <span className="text-[#6B6B6B]">(Optional)</span>
                         </label>
                         <input
                           {...register('phone')}
                           type="tel"
                           id="phone"
-                          className="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-indigo-500 focus:outline-none transition-colors text-slate-800"
+                          className="w-full px-4 py-3 border-2 border-stone-200 rounded-lg focus:border-[#2D8A6E] focus:outline-none transition-colors text-[#2C2C2C] bg-white"
                           placeholder="(512) 555-1234"
                         />
                         {errors.phone && (
@@ -309,13 +304,13 @@ export default function ContactPage() {
 
                     {/* Subject */}
                     <div>
-                      <label htmlFor="subject" className="block font-medium text-slate-700 mb-2">
-                        What can we help you with? <span className="text-red-500">*</span>
+                      <label htmlFor="subject" className="block font-medium text-[#2C2C2C] mb-2">
+                        What can we help you with? <span className="text-[#E67B4A]">*</span>
                       </label>
                       <select
                         {...register('subject')}
                         id="subject"
-                        className="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-indigo-500 focus:outline-none transition-colors text-slate-800"
+                        className="w-full px-4 py-3 border-2 border-stone-200 rounded-lg focus:border-[#2D8A6E] focus:outline-none transition-colors text-[#2C2C2C] bg-white"
                       >
                         <option value="">Select a subject...</option>
                         <option value="general">General Question</option>
@@ -332,14 +327,14 @@ export default function ContactPage() {
 
                     {/* Message */}
                     <div>
-                      <label htmlFor="message" className="block font-medium text-slate-700 mb-2">
-                        Your Message <span className="text-red-500">*</span>
+                      <label htmlFor="message" className="block font-medium text-[#2C2C2C] mb-2">
+                        Your Message <span className="text-[#E67B4A]">*</span>
                       </label>
                       <textarea
                         {...register('message')}
                         id="message"
                         rows={6}
-                        className="w-full px-4 py-3 border-2 border-slate-200 rounded-lg focus:border-indigo-500 focus:outline-none transition-colors resize-none text-slate-800"
+                        className="w-full px-4 py-3 border-2 border-stone-200 rounded-lg focus:border-[#2D8A6E] focus:outline-none transition-colors resize-none text-[#2C2C2C] bg-white"
                         placeholder="Tell us how we can help..."
                       />
                       {errors.message && (
@@ -349,37 +344,25 @@ export default function ContactPage() {
 
                     {/* Preferred Contact Method */}
                     <div>
-                      <label className="block font-medium text-slate-700 mb-3">
+                      <label className="block font-medium text-[#2C2C2C] mb-3">
                         How would you prefer we contact you back?
                       </label>
                       <div className="flex flex-wrap gap-4">
-                        <label className="flex items-center gap-2 cursor-pointer">
-                          <input
-                            {...register('preferredContact')}
-                            type="radio"
-                            value="email"
-                            className="w-4 h-4 text-indigo-600 focus:ring-indigo-500"
-                          />
-                          <span className="text-slate-600">Email</span>
-                        </label>
-                        <label className="flex items-center gap-2 cursor-pointer">
-                          <input
-                            {...register('preferredContact')}
-                            type="radio"
-                            value="phone"
-                            className="w-4 h-4 text-indigo-600 focus:ring-indigo-500"
-                          />
-                          <span className="text-slate-600">Phone</span>
-                        </label>
-                        <label className="flex items-center gap-2 cursor-pointer">
-                          <input
-                            {...register('preferredContact')}
-                            type="radio"
-                            value="either"
-                            className="w-4 h-4 text-indigo-600 focus:ring-indigo-500"
-                          />
-                          <span className="text-slate-600">Either works</span>
-                        </label>
+                        {[
+                          { value: 'email', label: 'Email' },
+                          { value: 'phone', label: 'Phone' },
+                          { value: 'either', label: 'Either works' },
+                        ].map((option) => (
+                          <label key={option.value} className="flex items-center gap-2 cursor-pointer">
+                            <input
+                              {...register('preferredContact')}
+                              type="radio"
+                              value={option.value}
+                              className="w-4 h-4 text-[#2D8A6E] focus:ring-[#2D8A6E]"
+                            />
+                            <span className="text-[#6B6B6B]">{option.label}</span>
+                          </label>
+                        ))}
                       </div>
                     </div>
 
@@ -388,84 +371,39 @@ export default function ContactPage() {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-4 rounded-lg font-bold text-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="w-full btn btn-primary text-lg py-4 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         {isSubmitting ? 'Sending...' : 'Send Message'}
                       </button>
-                      <p className="text-sm text-center text-slate-500 mt-3">
+                      <p className="text-sm text-center text-[#6B6B6B] mt-3">
                         We typically respond within 24 hours
                       </p>
                     </div>
                   </form>
-                </Card>
-              </div>
-            </div>
-
-            {/* FAQ Section */}
-            <div className="mb-16">
-              <h2 className="font-heading text-4xl font-bold text-slate-800 mb-8 text-center">
-                Frequently Asked Questions
-              </h2>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Card>
-                  <h3 className="font-bold text-xl text-slate-800 mb-3">
-                    How quickly will I hear back?
-                  </h3>
-                  <p className="text-slate-600">
-                    We respond to all inquiries within 24 hours, usually much sooner. For urgent questions about availability, call or text us directly at (512) 555-1234.
-                  </p>
-                </Card>
-
-                <Card>
-                  <h3 className="font-bold text-xl text-slate-800 mb-3">
-                    Can family members contact you?
-                  </h3>
-                  <p className="text-slate-600">
-                    Absolutely! We welcome inquiries from family members, support persons, and referring professionals. Select &quot;Family/Support Person Inquiry&quot; as your subject.
-                  </p>
-                </Card>
-
-                <Card>
-                  <h3 className="font-bold text-xl text-slate-800 mb-3">
-                    What if I&apos;m in crisis right now?
-                  </h3>
-                  <p className="text-slate-600">
-                    If you&apos;re experiencing a mental health or substance use crisis, please call 988 immediately for free, confidential support available 24/7. For medical emergencies, call 911.
-                  </p>
-                </Card>
-
-                <Card>
-                  <h3 className="font-bold text-xl text-slate-800 mb-3">
-                    Do you offer tours of the houses?
-                  </h3>
-                  <p className="text-slate-600">
-                    Yes! We offer virtual and in-person tours by appointment. Contact us to schedule a time that works for you, or ask about it in the message form above.
-                  </p>
-                </Card>
+                </div>
               </div>
             </div>
 
             {/* CTA Section */}
-            <div className="text-center bg-gradient-to-br from-indigo-600 to-teal-600 text-white rounded-2xl p-12">
+            <div className="text-center bg-gradient-to-br from-[#2D8A6E] to-[#247058] text-white rounded-2xl p-12">
               <h2 className="font-heading text-3xl md:text-4xl font-bold mb-4">
                 Ready to Start Your Recovery Journey?
               </h2>
               <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-                Our application process is simple, and Slade or Chloe will personally review every submission.
+                Our application process is simple. We personally review every submission.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href={APPLICATION_URL}
+                  href={siteConfig.APPLICATION_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center bg-white text-indigo-700 hover:bg-indigo-50 px-8 py-4 rounded-full font-bold shadow-xl transition-all"
+                  className="btn btn-white text-lg"
                 >
-                  Start Your Application
+                  Submit Application
                 </a>
                 <Link
                   href="/houses"
-                  className="inline-flex items-center justify-center bg-transparent text-white border-2 border-white hover:bg-white/10 px-8 py-4 rounded-full font-bold shadow-xl transition-all"
+                  className="btn btn-outline border-white text-white hover:bg-white hover:text-[#2D8A6E] text-lg"
                 >
                   View Our Houses
                 </Link>

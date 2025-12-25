@@ -1,34 +1,37 @@
 import type { Metadata } from "next";
-import { Crimson_Pro, Inter, Caveat } from "next/font/google";
+import { Fraunces, Inter, Caveat } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import GeminiChat from "@/components/chat/GeminiChat";
 
-const crimsonPro = Crimson_Pro({
-  variable: "--font-heading",
+// Display heading font - modern readable display (Mockup spec)
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800", "900"],
   display: "swap",
 });
 
+// Body font - clean and readable
 const inter = Inter({
-  variable: "--font-body",
+  variable: "--font-inter",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
+// Handwritten captions - for polaroid labels and accents
 const caveat = Caveat({
-  variable: "--font-accent",
+  variable: "--font-caveat",
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Recovery Centered Living | Sober Living Homes in Austin, TX",
-  description: "Find your path to recovery in Austin. Recovery Centered Living offers supportive sober living homes where you're seen, supported, and empowered to rebuild your life.",
+  title: "Recovery Centered Living | High Accountability Recovery Living in Austin, TX",
+  description: "High Accountability Recovery Living in Austin, TX. Recovery Centered Living is a clean, recovery-centered community with a spiritual environment—built for people who are ready to show up and rebuild with support.",
 };
 
 export default function RootLayout({
@@ -39,7 +42,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${crimsonPro.variable} ${inter.variable} ${caveat.variable} font-body antialiased text-slate-800 bg-white selection:bg-indigo-100 selection:text-indigo-900`}
+        className={`${fraunces.variable} ${inter.variable} ${caveat.variable} antialiased`}
       >
         <Header />
         <main className="min-h-screen">

@@ -54,27 +54,10 @@ export default function IntakeWizard() {
         console.error('Failed to load saved draft:', e);
       }
     }
-  }, []);
-
-  // Auto-save to localStorage
-  useEffect(() => {
-    const subscription1 = form1.watch((value) => {
-      saveDraft();
-    });
-    const subscription2 = form2.watch((value) => {
-      saveDraft();
-    });
-    const subscription3 = form3.watch((value) => {
-      saveDraft();
-    });
-    return () => {
-      subscription1.unsubscribe();
-      subscription2.unsubscribe();
-      subscription3.unsubscribe();
-    };
   }, [form1, form2, form3]);
 
-  const saveDraft = () => {
+  // Save draft - wrapped in useCallback for dependency stability
+  const saveDraft = React.useCallback(() => {
     const draft = {
       step1: form1.getValues(),
       step2: form2.getValues(),
@@ -82,7 +65,19 @@ export default function IntakeWizard() {
       currentStep,
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(draft));
-  };
+  }, [form1, form2, form3, currentStep]);
+
+  // Auto-save to localStorage
+  useEffect(() => {
+    const subscription1 = form1.watch(() => saveDraft());
+    const subscription2 = form2.watch(() => saveDraft());
+    const subscription3 = form3.watch(() => saveDraft());
+    return () => {
+      subscription1.unsubscribe();
+      subscription2.unsubscribe();
+      subscription3.unsubscribe();
+    };
+  }, [form1, form2, form3, saveDraft]);
 
   const goToStep = (step: IntakeStep) => {
     setCurrentStep(step);
@@ -90,11 +85,11 @@ export default function IntakeWizard() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleStep1Submit = async (data: Step1Data) => {
+  const handleStep1Submit = async () => {
     goToStep(2);
   };
 
-  const handleStep2Submit = async (data: Step2Data) => {
+  const handleStep2Submit = async () => {
     goToStep(3);
   };
 
@@ -182,13 +177,12 @@ export default function IntakeWizard() {
                 key={step}
                 onClick={() => step < currentStep ? goToStep(step as IntakeStep) : null}
                 disabled={step > currentStep}
-                className={`w-10 h-10 rounded-full font-bold text-sm transition-all ${
-                  step === currentStep
-                    ? 'bg-gradient-to-br from-primary-600 to-secondary-600 text-white scale-110 shadow-lg'
-                    : step < currentStep
+                className={`w-10 h-10 rounded-full font-bold text-sm transition-all ${step === currentStep
+                  ? 'bg-gradient-to-br from-primary-600 to-secondary-600 text-white scale-110 shadow-lg'
+                  : step < currentStep
                     ? 'bg-brand-success text-white cursor-pointer hover:scale-105'
                     : 'bg-stone-200 text-stone-400 cursor-not-allowed'
-                }`}
+                  }`}
               >
                 {step < currentStep ? '✓' : step}
               </button>

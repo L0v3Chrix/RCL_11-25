@@ -3,20 +3,15 @@ export type HouseAvailability = 'available' | 'waitlist' | 'full';
 export interface House {
   id: string;
   name: string;
+  displayName: string;
   type: 'mens' | 'womens';
-  location: 'south' | 'north';
-  address: string;
+  location: 'south' | 'north' | 'pflugerville';
   neighborhood: string;
   capacity: number;
   currentOccupancy: number;
   availability: HouseAvailability;
   amenities: string[];
   highlights: string[];
-  houseManager: {
-    name: string;
-    yearsInRecovery: number;
-    bio: string;
-  };
   images: {
     main: string;
     gallery: string[];
@@ -26,23 +21,22 @@ export interface House {
     monthly: number;
     deposit: number;
   };
-  features: {
-    icon: string;
-    label: string;
-  }[];
+  bedCount: number;
+  hasParking: boolean;
+  parkingInfo: string;
 }
 
 export const houses: House[] = [
-  // Men's Houses - South Austin
+  // RCL One - Men's - North Austin/Domain
   {
-    id: 'mens-south-1',
-    name: 'The Oak House',
+    id: 'rcl-one',
+    name: 'RCL One',
+    displayName: "RCL One (Men's House)",
     type: 'mens',
-    location: 'south',
-    address: 'South Austin',
-    neighborhood: 'Travis Heights',
-    capacity: 8,
-    currentOccupancy: 6,
+    location: 'north',
+    neighborhood: 'Domain Area',
+    capacity: 6,
+    currentOccupancy: 5,
     availability: 'available',
     amenities: [
       'Shared Kitchen',
@@ -51,101 +45,120 @@ export const houses: House[] = [
       'Washer/Dryer',
       'WiFi',
       'Parking',
-      'Storage',
       'AC/Heat',
     ],
     highlights: [
-      'Walking distance to downtown',
-      'Near recovery meeting locations',
-      'Quiet residential street',
-      'Close to parks and hiking trails',
+      'Near Domain shopping & dining',
+      'Close to recovery meetings',
+      'Quiet residential area',
+      'Easy highway access',
     ],
-    houseManager: {
-      name: 'Marcus',
-      yearsInRecovery: 7,
-      bio: 'Marcus has been in recovery for 7 years and brings a grounded, supportive presence to the house. He works in construction and is passionate about fitness and outdoor activities.',
-    },
     images: {
-      main: '/images/houses/oak-house-main.jpg',
-      gallery: [
-        '/images/houses/oak-house-1.jpg',
-        '/images/houses/oak-house-2.jpg',
-        '/images/houses/oak-house-3.jpg',
-      ],
+      main: '/images/houses/rcl-one.jpg',
+      gallery: [],
     },
     pricing: {
       weekly: 175,
       monthly: 700,
       deposit: 350,
     },
-    features: [
-      { icon: '🛏️', label: '8 Beds' },
-      { icon: '🚗', label: 'Parking' },
-      { icon: '🌳', label: 'Backyard' },
-      { icon: '📍', label: 'Downtown Close' },
-    ],
+    bedCount: 6,
+    hasParking: true,
+    parkingInfo: 'Street parking available',
   },
+
+  // RCL Two - Men's - North Austin/Domain
   {
-    id: 'mens-south-2',
-    name: 'The Cypress House',
+    id: 'rcl-two',
+    name: 'RCL Two',
+    displayName: "RCL Two (Men's House)",
     type: 'mens',
-    location: 'south',
-    address: 'South Austin',
-    neighborhood: 'Bouldin Creek',
+    location: 'north',
+    neighborhood: 'Domain Area',
     capacity: 6,
-    currentOccupancy: 5,
-    availability: 'available',
+    currentOccupancy: 6,
+    availability: 'waitlist',
     amenities: [
       'Shared Kitchen',
       'Living Room',
-      'Front Porch',
+      'Backyard',
       'Washer/Dryer',
       'WiFi',
       'Parking',
       'AC/Heat',
-      'Office Space',
     ],
     highlights: [
-      'Walkable neighborhood',
-      'Near coffee shops and grocery',
-      'Bike-friendly area',
-      'Close to Lady Bird Lake',
+      'Near Domain shopping & dining',
+      'Walking distance to RCL One',
+      'Strong brotherhood community',
+      'Close to employment centers',
     ],
-    houseManager: {
-      name: 'David',
-      yearsInRecovery: 5,
-      bio: 'David is 5 years sober and works in the tech industry. He values structure, accountability, and creating a supportive brotherhood in the house.',
-    },
     images: {
-      main: '/images/houses/cypress-house-main.jpg',
-      gallery: [
-        '/images/houses/cypress-house-1.jpg',
-        '/images/houses/cypress-house-2.jpg',
-        '/images/houses/cypress-house-3.jpg',
-      ],
+      main: '/images/houses/rcl-two.jpg',
+      gallery: [],
     },
     pricing: {
       weekly: 175,
       monthly: 700,
       deposit: 350,
     },
-    features: [
-      { icon: '🛏️', label: '6 Beds' },
-      { icon: '🚗', label: 'Parking' },
-      { icon: '🏡', label: 'Front Porch' },
-      { icon: '💼', label: 'Work Space' },
-    ],
+    bedCount: 6,
+    hasParking: true,
+    parkingInfo: 'Driveway parking',
   },
+
+  // RCL Three - Women's - Palmer/McNeil
   {
-    id: 'mens-south-3',
-    name: 'The Pecan House',
+    id: 'rcl-three',
+    name: 'RCL Three',
+    displayName: "RCL Three (Women's House)",
+    type: 'womens',
+    location: 'north',
+    neighborhood: 'Palmer & McNeil',
+    capacity: 6,
+    currentOccupancy: 4,
+    availability: 'available',
+    amenities: [
+      'Shared Kitchen',
+      'Living Room',
+      'Garden Space',
+      'Washer/Dryer',
+      'WiFi',
+      'Parking',
+      'AC/Heat',
+      'Outdoor Patio',
+    ],
+    highlights: [
+      'Peaceful residential setting',
+      'Beautiful garden space',
+      'Supportive sisterhood environment',
+      'Near yoga studios & wellness centers',
+    ],
+    images: {
+      main: '/images/houses/rcl-three.jpg',
+      gallery: [],
+    },
+    pricing: {
+      weekly: 175,
+      monthly: 700,
+      deposit: 350,
+    },
+    bedCount: 6,
+    hasParking: true,
+    parkingInfo: 'Street parking available',
+  },
+
+  // RCL Four - Men's - Pflugerville
+  {
+    id: 'rcl-four',
+    name: 'RCL Four',
+    displayName: "RCL Four (Men's House)",
     type: 'mens',
-    location: 'south',
-    address: 'South Austin',
-    neighborhood: 'South Congress',
-    capacity: 7,
+    location: 'pflugerville',
+    neighborhood: 'Pflugerville',
+    capacity: 8,
     currentOccupancy: 7,
-    availability: 'waitlist',
+    availability: 'available',
     amenities: [
       'Shared Kitchen',
       'Living Room',
@@ -154,101 +167,38 @@ export const houses: House[] = [
       'WiFi',
       'Parking',
       'AC/Heat',
-      'Outdoor Seating',
+      'Fire Pit',
     ],
     highlights: [
-      'Near SoCo shops and restaurants',
-      'Large outdoor gathering space',
-      'Close to bus lines',
-      'Active house community',
+      'Spacious two-story home',
+      'Large yard for gatherings',
+      'Family-friendly neighborhood',
+      'More affordable living',
     ],
-    houseManager: {
-      name: 'James',
-      yearsInRecovery: 9,
-      bio: 'James has been in recovery for 9 years and is a certified peer support specialist. He brings compassion and experience to helping others navigate early recovery.',
-    },
     images: {
-      main: '/images/houses/pecan-house-main.jpg',
-      gallery: [
-        '/images/houses/pecan-house-1.jpg',
-        '/images/houses/pecan-house-2.jpg',
-        '/images/houses/pecan-house-3.jpg',
-      ],
+      main: '/images/houses/rcl-four.jpg',
+      gallery: [],
     },
     pricing: {
-      weekly: 175,
-      monthly: 700,
-      deposit: 350,
+      weekly: 165,
+      monthly: 660,
+      deposit: 330,
     },
-    features: [
-      { icon: '🛏️', label: '7 Beds' },
-      { icon: '🚗', label: 'Parking' },
-      { icon: '🌳', label: 'Large Yard' },
-      { icon: '🚌', label: 'Transit Access' },
-    ],
+    bedCount: 8,
+    hasParking: true,
+    parkingInfo: 'Driveway parking',
   },
 
-  // Women's Houses - North Austin
+  // RCL Five - Men's - Palmer/Mopac
   {
-    id: 'womens-north-1',
-    name: 'The Willow House',
-    type: 'womens',
+    id: 'rcl-five',
+    name: 'RCL Five',
+    displayName: "RCL Five (Men's House)",
+    type: 'mens',
     location: 'north',
-    address: 'North Austin',
-    neighborhood: 'Hyde Park',
+    neighborhood: 'Palmer & Mopac',
     capacity: 6,
-    currentOccupancy: 4,
-    availability: 'available',
-    amenities: [
-      'Shared Kitchen',
-      'Living Room',
-      'Front Porch',
-      'Washer/Dryer',
-      'WiFi',
-      'Parking',
-      'AC/Heat',
-      'Garden Space',
-    ],
-    highlights: [
-      'Historic neighborhood charm',
-      'Walking distance to UT campus',
-      'Near yoga studios and wellness centers',
-      'Quiet, tree-lined street',
-    ],
-    houseManager: {
-      name: 'Sarah',
-      yearsInRecovery: 6,
-      bio: 'Sarah is 6 years sober and works as a yoga instructor. She creates a nurturing, grounded environment and emphasizes holistic recovery practices.',
-    },
-    images: {
-      main: '/images/houses/willow-house-main.jpg',
-      gallery: [
-        '/images/houses/willow-house-1.jpg',
-        '/images/houses/willow-house-2.jpg',
-        '/images/houses/willow-house-3.jpg',
-      ],
-    },
-    pricing: {
-      weekly: 175,
-      monthly: 700,
-      deposit: 350,
-    },
-    features: [
-      { icon: '🛏️', label: '6 Beds' },
-      { icon: '🚗', label: 'Parking' },
-      { icon: '🌸', label: 'Garden' },
-      { icon: '🧘', label: 'Wellness Focus' },
-    ],
-  },
-  {
-    id: 'womens-north-2',
-    name: 'The Magnolia House',
-    type: 'womens',
-    location: 'north',
-    address: 'North Austin',
-    neighborhood: 'Crestview',
-    capacity: 7,
-    currentOccupancy: 6,
+    currentOccupancy: 5,
     availability: 'available',
     amenities: [
       'Shared Kitchen',
@@ -258,89 +208,65 @@ export const houses: House[] = [
       'WiFi',
       'Parking',
       'AC/Heat',
-      'Study Room',
     ],
     highlights: [
-      'Near grocery stores and shopping',
-      'Close to parks and recreation',
-      'Family-friendly neighborhood',
-      'Easy highway access',
+      'Central North Austin location',
+      'Easy Mopac highway access',
+      'Near shopping & restaurants',
+      'Close to recovery meetings',
     ],
-    houseManager: {
-      name: 'Jennifer',
-      yearsInRecovery: 8,
-      bio: 'Jennifer has 8 years of recovery and is a licensed therapist. She brings professional insight and deep empathy to supporting women in early recovery.',
-    },
     images: {
-      main: '/images/houses/magnolia-house-main.jpg',
-      gallery: [
-        '/images/houses/magnolia-house-1.jpg',
-        '/images/houses/magnolia-house-2.jpg',
-        '/images/houses/magnolia-house-3.jpg',
-      ],
+      main: '/images/houses/rcl-five.jpg',
+      gallery: [],
     },
     pricing: {
       weekly: 175,
       monthly: 700,
       deposit: 350,
     },
-    features: [
-      { icon: '🛏️', label: '7 Beds' },
-      { icon: '🚗', label: 'Parking' },
-      { icon: '📚', label: 'Study Room' },
-      { icon: '🛒', label: 'Shopping Close' },
-    ],
+    bedCount: 6,
+    hasParking: true,
+    parkingInfo: 'Street parking available',
   },
+
+  // RCL Six - Men's - South Austin
   {
-    id: 'womens-north-3',
-    name: 'The Rosewood House',
-    type: 'womens',
-    location: 'north',
-    address: 'North Austin',
-    neighborhood: 'North Loop',
-    capacity: 8,
-    currentOccupancy: 7,
+    id: 'rcl-six',
+    name: 'RCL Six',
+    displayName: "RCL Six (Men's House)",
+    type: 'mens',
+    location: 'south',
+    neighborhood: 'South Austin',
+    capacity: 6,
+    currentOccupancy: 4,
     availability: 'available',
     amenities: [
       'Shared Kitchen',
       'Living Room',
-      'Covered Patio',
+      'Backyard',
       'Washer/Dryer',
       'WiFi',
       'Parking',
       'AC/Heat',
-      'Outdoor Firepit',
     ],
     highlights: [
-      'Vibrant artistic neighborhood',
-      'Near vintage shops and cafes',
-      'Close to recovery meetings',
-      'Strong community vibe',
+      'Walkable to SoCo area',
+      'Near downtown & Lady Bird Lake',
+      'Vibrant neighborhood',
+      'Close to bus lines',
     ],
-    houseManager: {
-      name: 'Amanda',
-      yearsInRecovery: 10,
-      bio: 'Amanda has a decade of recovery and is passionate about creative expression in healing. She fosters a warm, inclusive atmosphere where all recovery paths are honored.',
-    },
     images: {
-      main: '/images/houses/rosewood-house-main.jpg',
-      gallery: [
-        '/images/houses/rosewood-house-1.jpg',
-        '/images/houses/rosewood-house-2.jpg',
-        '/images/houses/rosewood-house-3.jpg',
-      ],
+      main: '/images/houses/rcl-six.jpg',
+      gallery: [],
     },
     pricing: {
       weekly: 175,
       monthly: 700,
       deposit: 350,
     },
-    features: [
-      { icon: '🛏️', label: '8 Beds' },
-      { icon: '🚗', label: 'Parking' },
-      { icon: '🔥', label: 'Firepit' },
-      { icon: '🎨', label: 'Artistic Area' },
-    ],
+    bedCount: 6,
+    hasParking: true,
+    parkingInfo: 'Street parking available',
   },
 ];
 
@@ -351,10 +277,6 @@ export function getAvailableHouses(): House[] {
 
 export function getHousesByType(type: 'mens' | 'womens'): House[] {
   return houses.filter((h) => h.type === type);
-}
-
-export function getHousesByLocation(location: 'south' | 'north'): House[] {
-  return houses.filter((h) => h.location === location);
 }
 
 export function getTotalAvailableBeds(): number {
@@ -369,9 +291,9 @@ export function getTotalAvailableBeds(): number {
 export function getAvailabilityBadgeColor(availability: HouseAvailability): string {
   switch (availability) {
     case 'available':
-      return 'bg-brand-success text-white';
+      return 'bg-[#22c55e] text-white';
     case 'waitlist':
-      return 'bg-yellow-500 text-white';
+      return 'bg-[#E67B4A] text-white';
     case 'full':
       return 'bg-stone-400 text-white';
   }
@@ -382,7 +304,7 @@ export function getAvailabilityLabel(house: House): string {
 
   switch (house.availability) {
     case 'available':
-      return `${bedsAvailable} Bed${bedsAvailable === 1 ? '' : 's'} Available`;
+      return `${bedsAvailable} Bed${bedsAvailable === 1 ? '' : 's'} Open`;
     case 'waitlist':
       return 'Waitlist Open';
     case 'full':
