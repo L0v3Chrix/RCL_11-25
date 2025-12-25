@@ -1,10 +1,14 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { siteConfig, getSmsLink } from '@/config/site';
 import { PaperSurface } from '@/components/ui/ScrapbookElements';
+import Button from '@/components/ui/Button';
 
-export default function Partners() {
+interface PartnersProps {
+    onOpenApplication?: () => void;
+    onOpenTour?: () => void;
+}
+
+export default function Partners({ onOpenApplication, onOpenTour }: PartnersProps) {
     const helpItems = [
         'Confirming fit and next steps',
         'Clarifying bed dues and move-in costs',
@@ -49,20 +53,22 @@ export default function Partners() {
                     </PaperSurface>
 
                     <div className="flex flex-col sm:flex-row justify-center gap-8">
-                        <a
-                            href={siteConfig.APPLICATION_URL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-[#C7773B] hover:bg-[#B6662A] text-white font-black text-xl px-12 py-5 rounded-full shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1"
+                        <Button
+                            onClick={onOpenApplication}
+                            variant="hero-primary"
+                            size="xl"
+                            className="px-12 py-5 text-xl"
                         >
                             Submit Application
-                        </a>
-                        <a
-                            href={getSmsLink()}
-                            className="bg-transparent hover:bg-white/50 text-[#2F6F71] border-4 border-[#2F6F71]/30 hover:border-[#2F6F71] font-black text-xl px-12 py-5 rounded-full transition-all transform hover:-translate-y-1"
+                        </Button>
+                        <Button
+                            onClick={onOpenTour}
+                            variant="hero-secondary-dark"
+                            size="xl"
+                            className="px-12 py-5 text-xl"
                         >
                             Schedule a Tour (Text Us)
-                        </a>
+                        </Button>
                     </div>
                 </div>
             </div>

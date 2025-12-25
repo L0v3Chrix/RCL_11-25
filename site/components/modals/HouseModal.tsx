@@ -2,13 +2,15 @@
 
 import Image from 'next/image';
 import { House } from '@/data/houses';
-import { siteConfig, getSmsLink, getTelLink } from '@/config/site';
+import { useModal } from '@/providers/ModalProvider';
 
 interface HouseModalProps {
     house: House;
 }
 
 export default function HouseModal({ house }: HouseModalProps) {
+    const { openApplicationModal, openTourModal } = useModal();
+
     return (
         <div className="bg-[#FDF6E9] min-h-full">
             {/* Hero Section */}
@@ -96,20 +98,18 @@ export default function HouseModal({ house }: HouseModalProps) {
 
                             {/* CTA Buttons */}
                             <div className="space-y-4">
-                                <a
-                                    href={siteConfig.APPLICATION_URL}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="block w-full text-center btn btn-primary py-4 text-lg"
+                                <button
+                                    onClick={openApplicationModal}
+                                    className="block w-full text-center bg-[#C7773B] hover:bg-[#B66629] text-white font-black py-4 rounded-full text-lg transition-all shadow-lg transform hover:-translate-y-0.5"
                                 >
                                     Submit Application
-                                </a>
-                                <a
-                                    href={getSmsLink(house.name)}
-                                    className="block w-full text-center btn btn-outline py-4 text-lg border-2"
+                                </button>
+                                <button
+                                    onClick={openTourModal}
+                                    className="block w-full text-center border-2 border-[#2F6F71] text-[#2F6F71] hover:bg-[#2F6F71]/5 font-black py-4 rounded-full text-lg transition-all"
                                 >
                                     Schedule a Tour (Text Us)
-                                </a>
+                                </button>
                             </div>
 
                             <p className="text-center mt-6 text-xs text-[#6B5F55] font-bold">

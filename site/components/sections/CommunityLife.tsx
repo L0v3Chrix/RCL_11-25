@@ -6,9 +6,10 @@ import {
   Corkboard,
   PolaroidHybridCard,
   Pushpin,
-  Tape,
   PostItNote
 } from '@/components/ui/ScrapbookElements';
+import Lightbox from '@/components/ui/Lightbox';
+import { useState, useEffect } from 'react';
 
 // Unique list of photos from the community folder
 const PHOTOS = [
@@ -47,10 +48,8 @@ const PHOTOS = [
 const NOTES = [
   { text: "You are worth it.", color: "#fff68f" },
   { text: "Keep showing up.", color: "#ffcfd2" },
-  { text: "Recovery is possible.", color: "#cffaff" },
-  { text: "One day at a time.", color: "#e2f0cb" },
-  { text: "Love lives here.", color: "#f8d7da" },
-  { text: "Community = Strength", color: "#d1ecf1" },
+  { text: "One day at a time.", color: "#cffaff" },
+  { text: "Love lives here.", color: "#e2f0cb" },
 ];
 
 interface PhotoItem {
@@ -123,7 +122,20 @@ const generateChaoticLayout = (count: number, notesCount: number): ChaoticItem[]
 };
 
 export default function CommunityLife() {
-  const chaoticItems = generateChaoticLayout(PHOTOS.length, NOTES.length);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [photoIndex, setPhotoIndex] = useState(0);
+  const [chaoticItems, setChaoticItems] = useState<ChaoticItem[]>([]);
+
+  useEffect(() => {
+    setChaoticItems(generateChaoticLayout(PHOTOS.length, NOTES.length));
+  }, []);
+
+  const openLightbox = (index: number) => {
+    setPhotoIndex(index);
+    setLightboxOpen(true);
+  };
+
+
 
   return (
     <Corkboard className="py-32 min-h-[1600px] md:min-h-[2200px] bg-[#B98A53]">
@@ -146,7 +158,7 @@ export default function CommunityLife() {
               return (
                 <motion.div
                   key={item.id}
-                  className="absolute"
+                  className="absolute cursor-pointer"
                   style={{
                     top: item.style.top,
                     left: item.style.left,
@@ -165,6 +177,13 @@ export default function CommunityLife() {
                     stiffness: 40,
                     damping: 12
                   }}
+                  onClick={() => {
+                    // Find the index of this photo in the original PHOTOS array or just use loop index?
+                    // We used i % PHOTOS.length.
+                    // Let's play safe and just find the index in the PHOTOS list that matches src
+                    const pIndex = PHOTOS.findIndex(p => p.src === item.data.src);
+                    openLightbox(pIndex !== -1 ? pIndex : 0);
+                  }}
                 >
                   <PolaroidHybridCard
                     rotation={0}
@@ -174,7 +193,7 @@ export default function CommunityLife() {
                     tapePlacement2="-bottom-3 -left-6"
                     tapeVariant={Math.floor(Math.random() * 4)}
                     tapeVariant2={Math.floor(Math.random() * 4)}
-                    className="shadow-2xl hover:scale-105 transition-transform cursor-pointer"
+                    className="shadow-2xl hover:scale-105 transition-transform"
                     hasTape={true}
                     hasPin={true}
                   >
@@ -188,13 +207,6 @@ export default function CommunityLife() {
                       />
                     </div>
                   </PolaroidHybridCard>
-
-                  {/* Handwritten Tag */}
-                  <div className="text-center mt-4">
-                    <span className="font-handwritten text-4xl text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)] block">
-                      {item.data.label}
-                    </span>
-                  </div>
                 </motion.div>
               );
             } else {
@@ -232,6 +244,10 @@ export default function CommunityLife() {
                   initial={{ opacity: 0, x: idx % 2 === 0 ? -20 : 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
+                  onClick={() => {
+                    const pIndex = PHOTOS.findIndex(p => p.src === item.data.src);
+                    openLightbox(pIndex !== -1 ? pIndex : 0);
+                  }}
                 >
                   <PolaroidHybridCard
                     rotation={(Math.random() * 8) - 4}
@@ -246,12 +262,10 @@ export default function CommunityLife() {
                         alt={item.data.label}
                         fill
                         className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 340px"
                       />
                     </div>
                   </PolaroidHybridCard>
-                  <span className="font-handwritten text-4xl text-white mt-4 text-center drop-shadow-xl">
-                    {item.data.label}
-                  </span>
                 </motion.div>
               );
             } else {
@@ -272,6 +286,15 @@ export default function CommunityLife() {
           })}
         </div>
       </div>
-    </Corkboard>
+
+      <Lightbox
+        images={PHOTOS}
+        currentIndex={photoIndex}
+        isOpen={lightboxOpen}
+        onClose={() => setLightboxOpen(false)
+        }
+        onNavigate={setPhotoIndex}
+      />
+    </Corkboard >
   );
 }

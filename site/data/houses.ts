@@ -37,7 +37,6 @@ export const houses: House[] = [
     heroImage: '/images/houses/rcl-one-main.jpg',
     galleryImages: [
       '/images/houses/rcl-one-main.jpg',
-      '/images/houses/rcl-house-1.jpg',
     ],
     highlights: [
       'High Accountability Home',
@@ -69,7 +68,6 @@ export const houses: House[] = [
     heroImage: '/images/houses/rcl-two-main.jpg',
     galleryImages: [
       '/images/houses/rcl-two-main.jpg',
-      '/images/houses/rcl-house-1.jpg',
     ],
     highlights: [
       'High Accountability Home',

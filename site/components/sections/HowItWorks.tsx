@@ -1,48 +1,48 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { IconHouse, IconClipboard, IconChat, IconKey } from '@/components/ui/CustomIcons';
+import RCLIcon from '@/components/ui/RCLIcon';
 import { DoodleArrow } from '@/components/ui/ScrapbookElements';
 
 const STEPS = [
   {
     title: 'Explore Houses',
-    description: 'Browse our men’s and women’s homes and see what feels like the best fit.',
-    icon: <IconHouse size={56} />,
+    description: "Browse our men's and women's homes and see what feels like the best fit.",
+    iconName: 'house',
   },
   {
     title: 'Submit Application',
     description: 'Share the basics so we can confirm fit, timing, and next steps.',
-    icon: <IconClipboard size={56} />,
+    iconName: 'clipboard',
   },
   {
     title: 'We Review + Follow Up',
     description: 'Our management team personally reviews applications and follows up.',
-    icon: <IconChat size={56} />,
+    iconName: 'chat',
   },
   {
     title: 'Move-in Coordination / Tour',
-    description: 'Schedule a tour by text and we’ll coordinate details with clarity.',
-    icon: <IconKey size={56} />,
+    description: "Schedule a tour by text and we'll coordinate details with clarity.",
+    iconName: 'key',
   },
 ];
 
 export default function HowItWorks() {
   return (
     <section id="how-it-works" className="relative py-28 bg-[#F6F1E7]">
-      <div className="container">
+      <div className="container px-6">
         {/* Section Header */}
         <div className="text-center mb-24 relative">
           <h2 className="font-heading text-4xl md:text-5xl lg:text-8xl font-black text-[#1A1410] mb-6">
             How It Works
           </h2>
           <p className="text-xl md:text-2xl text-stone-500 mb-8 font-bold max-w-2xl mx-auto">
-            Getting started is simple. We’ll help you take the next right step.
+            Getting started is simple. We&apos;ll help you take the next right step.
           </p>
         </div>
 
         {/* Steps Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 md:gap-20 px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 md:gap-20">
           {STEPS.map((step, index) => (
             <motion.div
               key={index}
@@ -66,8 +66,8 @@ export default function HowItWorks() {
                     className="opacity-40"
                   />
                 </svg>
-                <div className="relative z-10 text-[#C7773B] transition-transform group-hover:scale-105 duration-300">
-                  {step.icon}
+                <div className="relative z-10 transition-transform group-hover:scale-105 duration-300">
+                  <RCLIcon name={step.iconName} size={56} />
                 </div>
               </div>
 

@@ -4,13 +4,15 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
-import { siteConfig, getSmsLink } from '@/config/site';
+import { siteConfig } from '@/config/site';
 import { Menu, X } from 'lucide-react';
+import { useModal } from '@/providers/ModalProvider';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { openApplicationModal, openTourModal } = useModal();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -82,14 +84,12 @@ export default function Header() {
 
           {/* Application Link (Right) */}
           <div className="hidden md:block">
-            <a
-              href={siteConfig.APPLICATION_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+            <button
+              onClick={openApplicationModal}
               className="bg-[#C7773B] hover:bg-[#B66629] text-white font-black text-sm px-8 py-3 rounded-full transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
             >
               Submit Application
-            </a>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -119,20 +119,24 @@ export default function Header() {
                 </a>
               ))}
               <div className="flex flex-col items-center gap-6 mt-8">
-                <a
-                  href={siteConfig.APPLICATION_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    openApplicationModal();
+                  }}
                   className="bg-[#C7773B] text-white font-black text-2xl px-12 py-5 rounded-full shadow-xl"
                 >
                   Submit Application
-                </a>
-                <a
-                  href={getSmsLink()}
+                </button>
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    openTourModal();
+                  }}
                   className="text-xl font-bold text-[#2F6F71]"
                 >
                   Schedule a Tour
-                </a>
+                </button>
               </div>
             </div>
           )}

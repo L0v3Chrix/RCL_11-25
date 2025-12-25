@@ -34,6 +34,10 @@ export const metadata: Metadata = {
   description: "High Accountability Recovery Living in Austin, TX. Recovery Centered Living is a clean, recovery-centered community with a spiritual environment—built for people who are ready to show up and rebuild with support.",
 };
 
+import { Providers } from "./providers";
+
+import GlobalModal from "@/components/ui/GlobalModal";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -44,12 +48,15 @@ export default function RootLayout({
       <body
         className={`${fraunces.variable} ${inter.variable} ${caveat.variable} antialiased`}
       >
-        <Header />
-        <main className="min-h-screen">
-          {children}
-        </main>
-        <Footer />
-        <GeminiChat />
+        <Providers>
+          <Header />
+          <main className="min-h-screen">
+            {children}
+          </main>
+          <Footer />
+          <GeminiChat />
+          <GlobalModal />
+        </Providers>
       </body>
     </html>
   );

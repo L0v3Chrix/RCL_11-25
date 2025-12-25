@@ -109,7 +109,7 @@ export const IconCar = ({ className, size, fillColor = DEFAULT_FILL, strokeColor
     </IconWrapper>
 );
 
-export const IconWifi = ({ className, size, fillColor = DEFAULT_FILL, strokeColor = DEFAULT_STROKE }: IconProps) => (
+export const IconWifi = ({ className, size, strokeColor = DEFAULT_STROKE }: IconProps) => (
     <IconWrapper className={className} size={size}>
         <path d="M5 12.55C8.6 9.5 15.4 9.5 19 12.55" stroke={strokeColor} strokeWidth={STROKE_WIDTH} strokeLinecap={STROKE_LINECAP} />
         <path d="M8.5 15.5C10.5 14 13.5 14 15.5 15.5" stroke={strokeColor} strokeWidth={STROKE_WIDTH} strokeLinecap={STROKE_LINECAP} />

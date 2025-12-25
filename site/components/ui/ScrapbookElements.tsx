@@ -200,12 +200,13 @@ export const PaperSurface = ({
     isTorn?: boolean;
     isWavy?: boolean;
     rotation?: number;
-    shadowSize?: 'sm' | 'md' | 'lg' | 'none';
+    shadowSize?: 'sm' | 'md' | 'lg' | 'xl' | 'none';
 }) => {
     const shadowClasses = {
         sm: 'shadow-sm',
         md: 'shadow-md',
         lg: 'shadow-xl',
+        xl: 'shadow-2xl',
         none: ''
     };
 

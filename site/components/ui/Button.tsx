@@ -1,13 +1,14 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react';
 
-type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost';
-type ButtonSize = 'sm' | 'md' | 'lg';
+type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'hero-primary' | 'hero-secondary' | 'hero-secondary-dark';
+type ButtonSize = 'sm' | 'md' | 'lg' | 'xl';
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   children: ReactNode;
   className?: string;
+  isLoading?: boolean;
 }
 
 export default function Button({
@@ -15,29 +16,48 @@ export default function Button({
   size = 'md',
   children,
   className = '',
+  isLoading,
   ...props
 }: ButtonProps) {
-  const baseStyles = 'font-body font-semibold rounded-md transition-all duration-[300ms] ease-[cubic-bezier(0.25,0.1,0.25,1)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-500 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
+  // Base standards
+  const baseStyles = 'inline-flex items-center justify-center font-bold tracking-wide transition-all duration-300 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98]';
+  const shapeStyles = 'rounded-full'; // Always pills per new design
 
-  const variantStyles = {
-    primary: 'bg-accent-500 text-white hover:bg-accent-600 hover:-translate-y-0.5 hover:shadow-md active:translate-y-0',
-    secondary: 'bg-secondary-500 text-white hover:bg-secondary-600 hover:-translate-y-0.5 hover:shadow-md active:translate-y-0',
-    outline: 'bg-transparent border-2 border-primary-500 text-primary-700 hover:bg-primary-50 hover:border-primary-600',
-    ghost: 'bg-transparent text-primary-600 hover:bg-primary-50'
+  const variants = {
+    // Standard Orange
+    primary: 'bg-[#C7773B] hover:bg-[#B66629] text-white shadow-lg hover:shadow-xl shadow-[#C7773B]/20 hover:-translate-y-0.5',
+    // Standard Teal
+    secondary: 'bg-[#2F6F71] hover:bg-[#245C5E] text-white shadow-lg hover:shadow-xl shadow-[#2F6F71]/20 hover:-translate-y-0.5',
+    // Outline (usually for dark on light)
+    outline: 'bg-transparent border-2 border-[#1A1410] text-[#1A1410] hover:bg-[#1A1410] hover:text-white',
+    // Ghost
+    ghost: 'bg-transparent text-[#C7773B] hover:bg-[#C7773B]/10',
+
+    // Massive Hero Buttons
+    'hero-primary': 'bg-[#C7773B] hover:bg-[#B66629] text-white font-black shadow-[0_15px_40px_rgba(199,119,59,0.5)] hover:shadow-[0_20px_50px_rgba(199,119,59,0.6)] hover:-translate-y-1',
+    'hero-secondary': 'bg-transparent hover:bg-white/10 text-white border-4 border-white/60 hover:border-white shadow-2xl backdrop-blur-md hover:-translate-y-1',
+    // Hero Secondary Dark (for light backgrounds)
+    'hero-secondary-dark': 'bg-transparent hover:bg-[#2F6F71]/10 text-[#2F6F71] border-4 border-[#2F6F71]/30 hover:border-[#2F6F71] shadow-none hover:-translate-y-1'
   };
 
-  const sizeStyles = {
+  const sizes = {
     sm: 'px-4 py-2 text-sm',
     md: 'px-6 py-3 text-base',
-    lg: 'px-8 py-4 text-lg'
+    lg: 'px-10 py-4 text-lg',
+    xl: 'px-14 py-6 text-xl md:text-2xl', // Hero size
   };
+
+  const variantStyle = variants[variant as keyof typeof variants] || variants.primary;
+  const sizeStyle = sizes[size];
 
   return (
     <button
-      className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
+      className={`${baseStyles} ${shapeStyles} ${variantStyle} ${sizeStyle} ${className}`}
       {...props}
     >
-      {children}
+      {isLoading ? (
+        <span className="opacity-80">Loading...</span>
+      ) : children}
     </button>
   );
 }
