@@ -7,7 +7,7 @@ import GeminiChat from "@/components/chat/GeminiChat";
 
 // Display heading font - modern readable display (Mockup spec)
 const fraunces = Fraunces({
-  variable: "--font-fraunces",
+  variable: "--font-heading",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800", "900"],
   display: "swap",
@@ -15,7 +15,7 @@ const fraunces = Fraunces({
 
 // Body font - clean and readable
 const inter = Inter({
-  variable: "--font-inter",
+  variable: "--font-body",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
@@ -23,7 +23,7 @@ const inter = Inter({
 
 // Handwritten captions - for polaroid labels and accents
 const caveat = Caveat({
-  variable: "--font-caveat",
+  variable: "--font-handwritten",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   display: "swap",
