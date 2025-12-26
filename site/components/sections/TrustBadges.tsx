@@ -44,7 +44,7 @@ const BADGES = [
 
 export default function TrustBadges() {
   return (
-    <div className="relative z-20 -mt-16 sm:-mt-20 px-4 pointer-events-none">
+    <div className="relative z-20 mt-8 sm:mt-0 sm:-mt-12 px-4 pointer-events-none">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 md:gap-8 justify-items-center">
           {BADGES.map((badge, index) => (

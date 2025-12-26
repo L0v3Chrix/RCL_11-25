@@ -233,11 +233,17 @@ export default function CommunityLife() {
           })}
         </div>
 
-        {/* Mobile View - A more vertical but still messy stack */}
+        {/* Mobile View - A more vertical but still messy stack with Post-It Notes */}
         <div className="flex flex-col gap-12 md:hidden px-4 pb-20 relative z-10">
-          {chaoticItems.slice(0, 15).map((item, idx) => {
-            if (item.type === 'photo') {
-              return (
+          {(() => {
+            // Get photos and notes separately for mobile layout
+            const photos = chaoticItems.filter(i => i.type === 'photo').slice(0, 12);
+            const notes = chaoticItems.filter(i => i.type === 'note');
+            const result: React.ReactNode[] = [];
+
+            photos.forEach((item, idx) => {
+              // Render photo
+              result.push(
                 <motion.div
                   key={`mobile-${item.id}`}
                   className="flex flex-col items-center"
@@ -245,7 +251,7 @@ export default function CommunityLife() {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   onClick={() => {
-                    const pIndex = PHOTOS.findIndex(p => p.src === item.data.src);
+                    const pIndex = PHOTOS.findIndex(p => p.src === (item as PhotoItem).data.src);
                     openLightbox(pIndex !== -1 ? pIndex : 0);
                   }}
                 >
@@ -258,8 +264,8 @@ export default function CommunityLife() {
                   >
                     <div className="relative aspect-square w-full">
                       <Image
-                        src={item.data.src}
-                        alt={item.data.label}
+                        src={(item as PhotoItem).data.src}
+                        alt={(item as PhotoItem).data.label}
                         fill
                         className="object-cover"
                         sizes="(max-width: 768px) 100vw, 340px"
@@ -268,22 +274,28 @@ export default function CommunityLife() {
                   </PolaroidHybridCard>
                 </motion.div>
               );
-            } else {
-              return (
-                <motion.div
-                  key={`mobile-${item.id}`}
-                  className="flex justify-center my-4"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                >
-                  <PostItNote color={item.data.color} rotation={(Math.random() * 10) - 5}>
-                    {item.data.text}
-                  </PostItNote>
-                </motion.div>
-              );
-            }
-          })}
+
+              // Insert a post-it note after every 3 photos (shows 4 notes total: after photo 2, 5, 8, 11)
+              if ((idx + 1) % 3 === 0 && notes[Math.floor(idx / 3)]) {
+                const note = notes[Math.floor(idx / 3)] as NoteItem;
+                result.push(
+                  <motion.div
+                    key={`mobile-note-${idx}`}
+                    className="flex justify-center my-4"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                  >
+                    <PostItNote color={note.data.color} rotation={(Math.random() * 10) - 5}>
+                      {note.data.text}
+                    </PostItNote>
+                  </motion.div>
+                );
+              }
+            });
+
+            return result;
+          })()}
         </div>
       </div>
 

@@ -92,7 +92,7 @@ export const houses: House[] = [
   {
     slug: 'rcl-three',
     name: "RCL Three",
-    gender: 'men',
+    gender: 'women',
     neighborhoodLabel: 'Austin Area',
     bedsLabel: 'High Accountability Home',
     parkingLabel: 'Street parking',
@@ -128,7 +128,7 @@ export const houses: House[] = [
     neighborhoodLabel: 'Austin Area',
     bedsLabel: 'High Accountability Home',
     parkingLabel: 'Driveway parking',
-    heroImage: '/images/houses/rcl-four.jpg',
+    heroImage: '/images/houses/rcl-four-main.jpg',
     galleryImages: [],
     highlights: [
       'High Accountability Home',
@@ -182,7 +182,7 @@ export const houses: House[] = [
   {
     slug: 'rcl-six',
     name: "RCL Six",
-    gender: 'women',
+    gender: 'men',
     neighborhoodLabel: 'Austin Area',
     bedsLabel: 'High Accountability Home',
     parkingLabel: 'Street parking',
