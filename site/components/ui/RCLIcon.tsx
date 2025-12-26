@@ -56,6 +56,7 @@ const icons: Record<string, (size: number, stroke: string, fill: string) => Reac
         </svg>
     ),
     // General icons
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     'spectrum': (size, stroke, _fill) => (
         <svg width={size} height={size} viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="8" y="20" width="32" height="8" rx="4" fill="url(#rainbow)" stroke={stroke} strokeWidth="1.5" />
