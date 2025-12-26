@@ -219,10 +219,16 @@ export const PaperSurface = ({
         }
         : isWavy
             ? {
-                maskImage: 'url("/masks/wave-edge.svg")',
-                WebkitMaskImage: 'url("/masks/wave-edge.svg")',
-                maskSize: '100% 100%',
-                WebkitMaskSize: '100% 100%'
+                maskImage: 'linear-gradient(black, black), url("/masks/wave-edge.svg")',
+                WebkitMaskImage: 'linear-gradient(black, black), url("/masks/wave-edge.svg")',
+                maskPosition: 'top, bottom',
+                WebkitMaskPosition: 'top, bottom',
+                maskSize: '100% calc(100% - 49px), 100% 50px',
+                WebkitMaskSize: '100% calc(100% - 49px), 100% 50px',
+                maskRepeat: 'no-repeat',
+                WebkitMaskRepeat: 'no-repeat',
+                maskComposite: 'exclude', // Just in case, though standard stacking usually adds. Actually standard is add. 
+                // We want to ensure union. Default composite is add.
             }
             : {};
 
