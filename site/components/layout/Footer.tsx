@@ -74,8 +74,20 @@ export default function Footer() {
             <p className="font-handwritten text-4xl md:text-6xl text-[#1A1410] opacity-90 mb-12">
               You don&apos;t have to do this alone.
             </p>
-            <p className="text-sm text-stone-400 font-bold uppercase tracking-[0.2em]">
+            <p className="text-sm text-stone-400 font-bold uppercase tracking-[0.2em] mb-4">
               &copy; {currentYear} Recovery Centered Living. All rights reserved.
+            </p>
+            <p className="text-xs text-stone-400/80">
+              Love this vibe? Built with care by the{' '}
+              <a
+                href="https://www.raizethevibe.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#C7773B] hover:text-[#B66629] transition-colors"
+              >
+                Raize the Vibe Tribe
+              </a>
+              .
             </p>
           </div>
         </div>
