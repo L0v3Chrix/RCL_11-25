@@ -117,10 +117,10 @@ export default function IntakePage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="tel:+15125551234"
+                  href="tel:+15127771748"
                   className="inline-flex items-center justify-center px-6 py-3 bg-teal-600 text-white rounded-lg font-medium hover:bg-teal-700 transition-colors"
                 >
-                  📞 Call Us: (512) 555-1234
+                  📞 Call Us: 512-777-1748
                 </a>
                 <Link
                   href="/contact"

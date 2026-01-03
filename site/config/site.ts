@@ -3,8 +3,8 @@ export const siteConfig = {
   APPLICATION_URL: 'https://oathtrack-resident-applications.s3.amazonaws.com/application.html#637ee9b1c89c',
 
   // Contact Information
-  GOOGLE_VOICE_NUMBER: '5127842851',
-  GOOGLE_VOICE_DISPLAY: '(512) 784-2851',
+  GOOGLE_VOICE_NUMBER: '5127771748',
+  GOOGLE_VOICE_DISPLAY: '512-777-1748',
   CONTACT_EMAIL: 'recoverycenteredliving@gmail.com',
 
   // Social Links
