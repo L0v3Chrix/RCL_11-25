@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import RCLIcon from '@/components/ui/RCLIcon';
 import { PaperSurface } from '@/components/ui/ScrapbookElements';
@@ -94,8 +94,28 @@ const getRotation = (index: number) => {
 
 export default function RecoverySpectrum() {
   const [selectedPathway, setSelectedPathway] = useState<string | null>(null);
+  const detailsRef = useRef<HTMLDivElement>(null);
 
   const selected = pathways.find(p => p.id === selectedPathway);
+
+  // Scroll to details when a pathway is selected
+  useEffect(() => {
+    if (selectedPathway && detailsRef.current) {
+      // Small delay to ensure the AnimatePresence content has rendered
+      const timeoutId = setTimeout(() => {
+        const headerOffset = 100; // Account for fixed header
+        const elementTop = detailsRef.current?.getBoundingClientRect().top ?? 0;
+        const offsetPosition = elementTop + window.scrollY - headerOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      }, 100);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [selectedPathway]);
 
   return (
     <section className="py-24 bg-[#FDF6E9] overflow-hidden relative">
@@ -195,6 +215,8 @@ export default function RecoverySpectrum() {
         <AnimatePresence>
           {selected && (
             <motion.div
+              ref={detailsRef}
+              id="recovery-spectrum-details"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}

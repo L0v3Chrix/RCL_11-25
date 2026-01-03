@@ -16,7 +16,6 @@ const PHOTOS = [
   { src: '/images/community/bbq.jpg', label: 'Sunday BBQ' },
   { src: '/images/community/family-meal.jpg', label: 'House Dinner' },
   { src: '/images/community/garden.jpg', label: 'Garden Crew' },
-  { src: '/images/community/kitchen.jpg', label: 'Kitchen Vibes' },
   { src: '/images/community/gratitude.jpg', label: 'Gratitude' },
   { src: '/images/community/outing-1.jpg', label: 'Outing' },
   { src: '/images/community/group-photo.jpg', label: 'The Family' },
