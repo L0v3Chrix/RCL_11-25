@@ -77,18 +77,19 @@ export default function Footer() {
             <p className="text-sm text-stone-400 font-bold uppercase tracking-[0.2em] mb-4">
               &copy; {currentYear} Recovery Centered Living. All rights reserved.
             </p>
-            <p className="text-xs text-stone-400/80">
-              Love this vibe? Built with care by the{' '}
+            <div className="flex flex-col items-center gap-1">
+              <span className="text-xs text-stone-400/80">
+                Love this vibe? Built with care by the
+              </span>
               <a
                 href="https://www.raizethevibe.com/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-[#C7773B] hover:text-[#B66629] transition-colors"
+                className="text-base font-bold bg-gradient-to-r from-[#FF6B6B] via-[#9B59B6] to-[#3498DB] bg-clip-text text-transparent hover:opacity-80 transition-opacity underline underline-offset-4 decoration-[#9B59B6]/50"
               >
                 Raize the Vibe Tribe
               </a>
-              .
-            </p>
+            </div>
           </div>
         </div>
       </div>
