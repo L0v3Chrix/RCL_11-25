@@ -29,6 +29,21 @@ export default function Footer() {
       <div className="container mx-auto">
         {/* Warm Paper Card Layout (Mockup Match) */}
         <div className="bg-[#FDF6E9] p-12 md:p-20 rounded-[3rem] shadow-xl border border-stone-200 relative overflow-hidden">
+          {/* Background Video Loop */}
+          <div className="absolute inset-0 overflow-hidden rounded-[3rem]">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover opacity-[0.08]"
+            >
+              <source src="/images/hero-video.mp4" type="video/mp4" />
+            </video>
+            {/* Gradient overlay for readability */}
+            <div className="absolute inset-0 bg-gradient-to-b from-[#FDF6E9]/80 via-[#FDF6E9]/60 to-[#FDF6E9]/90" />
+          </div>
+
           {/* Subtle paper grain internal overlay */}
           <div className="absolute inset-0 opacity-[0.03] bg-[url('/textures/paper-grain.svg')] pointer-events-none" />
 

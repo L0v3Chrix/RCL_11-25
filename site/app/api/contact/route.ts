@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 
 // Email to send form submissions to
-const RECIPIENT_EMAIL = 'chrixcolvard@icloud.com';
+// TODO: Integrate with SendGrid/Resend/GoHighLevel for actual email delivery
+const RECIPIENT_EMAIL = process.env.CONTACT_RECIPIENT_EMAIL || 'recoverycenteredliving@gmail.com';
 
 export async function POST(request: NextRequest) {
   try {

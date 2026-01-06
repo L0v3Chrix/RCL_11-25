@@ -91,7 +91,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(
       {
         error: 'Failed to get response',
-        fallback: "I'm having trouble connecting right now. Please call us at (512) XXX-XXXX or text us, and we'll get back to you right away. For immediate crisis support, call 988."
+        fallback: "I'm having trouble connecting right now. Please call us at 512-777-1748 or text us, and we'll get back to you right away. For immediate crisis support, call 988."
       },
       { status: 500 }
     );
