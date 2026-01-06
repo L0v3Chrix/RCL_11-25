@@ -90,7 +90,7 @@ body::before {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 1;
   background-image: url('/textures/noise.svg');
   background-size: 200px 200px;
   opacity: 0.035;
