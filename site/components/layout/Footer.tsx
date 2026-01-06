@@ -36,12 +36,12 @@ export default function Footer() {
               muted
               loop
               playsInline
-              className="absolute inset-0 w-full h-full object-cover opacity-[0.08]"
+              className="absolute inset-0 w-full h-full object-cover opacity-20"
             >
               <source src="/images/hero-video.mp4" type="video/mp4" />
             </video>
             {/* Gradient overlay for readability */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#FDF6E9]/80 via-[#FDF6E9]/60 to-[#FDF6E9]/90" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#FDF6E9]/60 via-[#FDF6E9]/40 to-[#FDF6E9]/70" />
           </div>
 
           {/* Subtle paper grain internal overlay */}
