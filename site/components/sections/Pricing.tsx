@@ -45,7 +45,7 @@ export default function Pricing({ onOpenApplication, onOpenTour }: PricingProps)
                             <PaperSurface rotation={-1.5} className="p-10 flex flex-col items-center !bg-[#2F6F71] !text-white relative overflow-hidden" shadowSize="lg">
                                 <div className="absolute inset-0 bg-black/10 mix-blend-multiply pointer-events-none" />
                                 <span className="relative z-10 text-sm font-black text-white/70 uppercase tracking-[0.2em] mb-6">Monthly Option</span>
-                                <div className="relative z-10 text-5xl md:text-6xl font-black text-white mb-4 drop-shadow-md">$900</div>
+                                <div className="relative z-10 text-5xl md:text-6xl font-black text-white mb-4 drop-shadow-md">$1000</div>
                                 <span className="relative z-10 text-xl font-bold text-white/90">per month</span>
                                 <p className="relative z-10 text-[10px] mt-6 opacity-60 font-bold uppercase tracking-widest">When approved / available</p>
                             </PaperSurface>

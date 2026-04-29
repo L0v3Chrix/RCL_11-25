@@ -51,7 +51,7 @@ export const houses: House[] = [
     ],
     pricing: {
       weekly: 250,
-      monthly: 900,
+      monthly: 1000,
       deposit: 200,
     },
     generalAreaText: 'Austin Area',
@@ -82,7 +82,7 @@ export const houses: House[] = [
     ],
     pricing: {
       weekly: 250,
-      monthly: 900,
+      monthly: 1000,
       deposit: 200,
     },
     generalAreaText: 'Austin Area',
@@ -114,7 +114,7 @@ export const houses: House[] = [
     ],
     pricing: {
       weekly: 250,
-      monthly: 900,
+      monthly: 1000,
       deposit: 200,
     },
     generalAreaText: 'Austin Area',
@@ -143,7 +143,7 @@ export const houses: House[] = [
     ],
     pricing: {
       weekly: 250,
-      monthly: 900,
+      monthly: 1000,
       deposit: 200,
     },
     generalAreaText: 'Austin Area',
@@ -172,7 +172,7 @@ export const houses: House[] = [
     ],
     pricing: {
       weekly: 250,
-      monthly: 900,
+      monthly: 1000,
       deposit: 200,
     },
     generalAreaText: 'Austin Area',
@@ -203,7 +203,7 @@ export const houses: House[] = [
     ],
     pricing: {
       weekly: 250,
-      monthly: 900,
+      monthly: 1000,
       deposit: 200,
     },
     generalAreaText: 'Austin Area',

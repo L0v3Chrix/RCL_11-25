@@ -7,7 +7,7 @@ import { PaperSurface, Tape } from '@/components/ui/ScrapbookElements';
 // Quick Clarity Block Data
 const QUICK_CLARITY = [
     "RCL is a clean, recovery-centered, high accountability home",
-    "Bed dues: $250/week or $900/month + $200 move-in fee",
+    "Bed dues: $250/week or $1000/month + $200 move-in fee",
     "The home stays safe through clear guidelines, community standards, and follow-through"
 ];
 
@@ -54,7 +54,7 @@ const FAQ_SECTIONS = [
         items: [
             {
                 question: "How much are bed dues?",
-                answer: "Bed dues are $250/week or $900/month."
+                answer: "Bed dues are $250/week or $1000/month."
             },
             {
                 question: "Is there a move-in fee?",
